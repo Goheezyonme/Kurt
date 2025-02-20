@@ -1,186 +1,94 @@
+/* General Styles */
 body {
-    background-color: #f3f4f6;
-    color: #1f2937;
-    font-family: 'Poppins', sans-serif;
-	margin: 0;
+    margin: 0;
     padding: 0;
-    width: 100vw;
-    overflow-x: hidden;
-}
-
-.navbar {
-    background-color: #d97706;
-    color: white;
-    padding: 1rem 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.container {
-    width: 1200px;
-    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+    background: url('back1.jpg') center/cover no-repeat fixed;
+    height: 100vh;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1.5rem;
-}
-
-.logo {
-    font-size: 2rem;
-    font-family: 'Dancing Script', cursive;
-    font-weight: bold;
-}
-
-.nav-links a {
-    margin-left: 1rem;
-    text-decoration: none;
-    color: white;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: #fde68a;
-}
-
-.cta-button {
-    background-color: #d97706;
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.cta-button:hover {
-    background-color: #facc15;
-}
-
-.hero {
-    position: relative;
-    height: 450px;
-    background: url('back1.jpg') center/cover no-repeat;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    text-align: center;
-    color: white;
+    align-items: center;
 }
 
+/* Dark overlay */
 .overlay {
     position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Adjust opacity for better readability */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.hero-content {
-    position: relative;
+/* Content Box */
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     max-width: 600px;
 }
 
-.hero-content h1 {
-    font-size: 3rem;
+/* Logo */
+.logo {
+    font-size: 3.5rem;
     font-family: 'Dancing Script', cursive;
-    color: #facc15;
+    color: gold;
+    margin-bottom: 15px;
 }
 
-.search-box {
-    margin-top: 1rem;
-    display: flex;
-	align-items: center;
-    justify-content: center;
-}
-
-.search-box input {
-    width: 300px;
-    padding: 0.5rem;
-    border: 2px solid #facc15;
-    border-radius: 5px 0 0 5px;
-    outline: none;
-}
-
-.search-box button {
-    background-color: #d97706;
+/* Description */
+.description {
+    font-size: 1.2rem;
     color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0 5px 5px 0;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+/* Sign-in paragraph */
+.signin-text {
+    color: #128c4e; /* Dark Green */
     font-weight: bold;
-    transition: background-color 0.3s;
+    font-size: 1.2rem;
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 5px;
 }
 
-.search-box button:hover {
-    background-color: #facc15;
+/* Button Group */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
 }
 
-.featured {
-    text-align: center;
-    padding: 3rem 0;
-    background-color: #d97706;
-    color: white;
-}
-
-.venue-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    max-width: 1000px;
-    margin: 2rem auto;
-}
-
-.venue-card {
-    background-color: white;
-    color: #1f2937;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-}
-
-.venue-card:hover {
-    transform: scale(1.05);
-}
-
-.venue-card img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.venue-card h3 {
-    font-size: 1.5rem;
-    color: #1e3a8a;
-    margin-top: 1rem;
-}
-
-.venue-card p {
-    color: #1d4ed8;
-}
-
-.venue-card button {
-    margin-top: 1rem;
-    background-color: #facc15;
-    color: white;
-    padding: 0.5rem 1rem;
+/* Buttons */
+.btn {
+    padding: 0.8rem 1.5rem;
     border-radius: 5px;
     font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.venue-card button:hover {
-    background-color: #eab308;
-}
-
-.cta {
-    background-color: #d97706;
+    text-decoration: none;
+    font-size: 1rem;
     text-align: center;
-    padding: 3rem 0;
+    transition: background-color 0.3s ease;
     color: white;
+    background: #d97706;
 }
 
-.footer {
-    background-color: #1e3a8a;
-    text-align: center;
-    padding: 1.5rem 0;
-    color: white;
+.btn:hover {
+    background: #facc15;
 }
 
-nav, header, section, footer {
-    width: 100%;
+/* Alternate Button */
+.btn-alt {
+    background: #1e3a8a;
 }
 
+.btn-alt:hover {
+    background: #3b82f6;
+}
