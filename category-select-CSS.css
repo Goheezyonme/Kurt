@@ -1,0 +1,187 @@
+body {
+    background-color: #f3f4f6;
+    color: #1f2937;
+    font-family: 'Poppins', sans-serif;
+	margin: 0;
+    padding: 0;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.navbar {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+}
+
+.logo {
+    font-size: 2rem;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+	margin-right: 700px;
+}
+
+.nav-links a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #fde68a;
+}
+
+.cta-button {
+    background-color: #1e3a8a
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #facc15;
+}
+
+.hero {
+    position: relative;
+    height: 450px;
+    background: url("Kurt's_Image.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-family: 'Dancing Script', cursive;
+    color: #facc15;
+}
+
+.search-box {
+    margin-top: 1rem;
+    display: flex;
+	align-items: center;
+    justify-content: center;
+}
+
+.search-box input {
+    width: 300px;
+    padding: 0.5rem;
+    border: 2px solid #facc15;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.search-box button {
+    background-color: #d97706;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0 5px 5px 0;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-box button:hover {
+    background-color: #facc15;
+}
+
+.featured {
+    text-align: center;
+    padding: 3rem 0;
+    background-color: #d97706;
+    color: white;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 2rem auto;
+}
+
+.category-card {
+    background-color: white;
+    color: #1f2937;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.category-card:hover {
+    transform: scale(1.05);
+}
+
+.category-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.category-card h3 {
+    font-size: 1.5rem;
+    color: #1e3a8a;
+    margin-top: 1rem;
+}
+
+.category-card p {
+    color: #1d4ed8;
+}
+
+.category-card button {
+    margin-top: 1rem;
+    background-color: #facc15;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.category-card button:hover {
+    background-color: #eab308;
+}
+
+.cta {
+    background-color: #d97706;
+    text-align: center;
+    padding: 3rem 0;
+    color: white;
+}
+
+.footer {
+    background-color: #1e3a8a;
+    text-align: center;
+    padding: 1.5rem 0;
+    color: white;
+}
+
+nav, header, section, footer {
+    width: 100%;
+}
+
