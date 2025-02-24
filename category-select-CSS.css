@@ -50,9 +50,7 @@ body {
     transition: background-color 0.3s;
 }
 
-.cta-button:hover {
-    background-color: #facc15;
-}
+
 
 .hero {
     position: relative;
