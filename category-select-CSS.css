@@ -8,6 +8,7 @@ body {
     overflow-x: hidden;
 }
 
+
 .navbar {
     background-color: #0799BB;
     color: white;
@@ -129,7 +130,7 @@ body {
 
 .category-card {
     background-color: white;
-    color: #1f2937;
+    color: #15BDA1;
     padding: 1.5rem;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
