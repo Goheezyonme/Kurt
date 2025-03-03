@@ -1,6 +1,6 @@
 body {
-    background-color: #f3f4f6;
-    color: #1f2937;
+    background-color: #FED325;
+    color: #FED325;
     font-family: 'Poppins', sans-serif;
 	margin: 0;
     padding: 0;
@@ -9,7 +9,7 @@ body {
 }
 
 .navbar {
-    background-color: #1e3a8a;
+    background-color: #0799BB;
     color: white;
     padding: 1rem 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -39,7 +39,7 @@ body {
 }
 
 .nav-links a:hover {
-    color: #fde68a;
+    color: #15BDA1;
 }
 
 .cta-button {
@@ -80,6 +80,10 @@ body {
     color: #facc15;
 }
 
+.hero-content p {
+    color: #15BDA1;
+}
+
 .search-box {
     margin-top: 1rem;
     display: flex;
@@ -111,7 +115,7 @@ body {
 .featured {
     text-align: center;
     padding: 3rem 0;
-    background-color: #d97706;
+    background-color: #FEC202;
     color: white;
 }
 
@@ -173,7 +177,7 @@ body {
 }
 
 .footer {
-    background-color: #1e3a8a;
+    background-color: #0799BB;
     text-align: center;
     padding: 1.5rem 0;
     color: white;
