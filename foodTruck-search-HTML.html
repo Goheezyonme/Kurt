@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ISO Talent | Discover Premium Event Venues</title>
     <link rel="stylesheet" href="searchPage-CSS.css">
-    <script src="foodTruck-Search-Script.js"></script>
+    <script src="search-script.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -14,12 +14,20 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-links">
-				<a href="Landing page.html" class="logo">ISO Talent</a>
+				<a href="Landing page.html" class="logo">Home</a>
                 <a href="#">About Us</a>
                 <a href="#" class="cta-button">List Your Venue</a>
             </div>
         </div>
     </nav>
+	
+	<header class="hero-foodTruck">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>Find great eats!</h1>
+            <p>Search food trucks serving up cuisine from every corner of the world!</p>
+        </div>
+    </header>
 	
 	<div class="nav-links">
         <a href="category-select-HTML.html" class="cta-button"><< Categories</a>
@@ -27,18 +35,40 @@
 
 
  <div class="tags">
-		<h2 style="color:white">Cuisines</h2>
+	<h2 style="color: #15BDA1">Cuisines</h2>
+        <button class="tag">Breakfast</button>
+        <button class="tag">Burgers</button>
+        <button class="tag">Caribbean</button>
         <button class="tag">Chinese</button>
-		<button class="tag">Greek</button>
-        <button class="tag">Italian</button>
-		<button class="tag">Indian</button>
-		<button class="tag">Japanese</button>
+        <button class="tag">Coffee</button>
+        <button class="tag">Cupcakes</button>
+        <button class="tag">Desserts</button>
 		<br><br>
-		<button class="tag">Mexican</button>
-		<button class="tag">Thai</button>
-		<button class="tag">Vegan-friendly</button>
-		<button class="tag">Vegetarian-friendly</button>
-		<button class="tag">Western</button>
+        <button class="tag">Fusion</button>
+        <button class="tag">Greek</button>
+        <button class="tag">Halal</button>
+        <button class="tag">Hot Dogs</button>
+        <button class="tag">Indian</button>
+        <button class="tag">Italian</button>
+		<br><br>
+        <button class="tag">Japanese</button>
+        <button class="tag">Juice & Smoothies</button>
+        <button class="tag">Korean</button>
+        <button class="tag">Mexican</button>
+        <button class="tag">Middle Eastern</button>
+        <button class="tag">Pizza</button>
+        <button class="tag">Poutine</button>
+		<br><br>
+        <button class="tag">Seafood</button>
+        <button class="tag">Soul Food</button>
+        <button class="tag">Southern BBQ</button>
+        <button class="tag">Street Food</button>
+        <button class="tag">Tex-Mex</button>
+        <button class="tag">Thai</button>
+		<br><br>
+        <button class="tag">Vegan-friendly</button>
+        <button class="tag">Vegetarian-friendly</button>
+        <button class="tag">Western</button>
 		<br><br>
 		<button class="button" id="search">Search</button>
 

@@ -1,5 +1,5 @@
 body {
-    background-color: #d97706;
+    background-color: #FEC202;
     color: #1f2937;
     font-family: 'Poppins', sans-serif;
 	margin: 0;
@@ -23,7 +23,7 @@ body, html {
 }
 
 .navbar {
-    background-color: #1e3a8a;
+    background-color: #0799BB;
     color: white;
     padding: 1rem 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -53,12 +53,12 @@ body, html {
 }
 
 .nav-links a:hover {
-    color: #fde68a;
+    color: #15BDA1;
 }
 
 
 .footer {
-    background-color: #1e3a8a;
+    background-color: #0799BB;
     text-align: center;
     padding: 1.5rem 0;
     color: white;
@@ -87,6 +87,60 @@ nav, header, section, footer {
     border: 2px solid black;
 	border-radius: 50px;
     cursor: pointer;
-	background-color: #1e3a8a;
+	background-color: #0799BB;
+}
+
+.hero-foodTruck {
+    position: relative;
+    height: 450px;
+    background: url("Kurt's_Image.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-musician {
+    position: relative;
+    height: 450px;
+    background: url("Kurt's_Image.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-catering {
+    position: relative;
+    height: 450px;
+    background: url("Kurt's_Image.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-family: 'Dancing Script', cursive;
+    color: #facc15;
+}
+
+.hero-content p{
+	color: #15BDA1
 }
 
