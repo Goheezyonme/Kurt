@@ -1,81 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Entertainer Account Registration</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entertainer Registration</title>
+    <link rel="stylesheet" href="entertainer-css.css">
 </head>
 <body>
 
-<h1>Entertainer Account Registration</h1>
-<form>
-<table>
-    <head><tr><th>Please input your info</th></tr></head>
-    <body>
-        <tr>
-            <td>Name</td>
-            <td><input></td>
-        </tr>
-        <tr>
-            <td>Representan's Name</td>
-            <td><input></td>
-        </tr>
-        <tr>
-            <td>Address</td>
-            <td><input></td>
-        </tr>
-        <tr>
-            <td>Postal Code</td>
-            <td><input></td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top;">Entertainer Type</td>
-            <td>
-                <input type="checkbox"><label>Music Band</label><br>
-                <input type="checkbox"><label>Performer</label><br>
-            </td>
-        </tr>
-        <tr>
-            <td>Phone</td>
-            <td><input></td>
-        </tr>
-        <tr>
-            <td>Avatar pic</td>
-            <td><input> <button>Upload</button></td>
-        </tr>
-        <tr>
-            <td rowspan="3" style="vertical-align: top;">Gallery</td>
-            <td><input> <button>Upload</button></td>
-        </tr>
-        <tr>
-            
-            <td><input> <button>Upload</button></td>
-        </tr>
-        <tr>
-            
-            <td><input> <button>Upload</button></td>
-        </tr>
-        <tr>
-            <td rowspan="2" style="vertical-align: top;">Video Sample</td>
-            <td><input> <button>Upload</button></td>
-        </tr>
-        <tr>
-            <td><input> <button>URL</button></td>
-        </tr>
-        <tr>
-            <td rowspan="2" style="vertical-align: top;">Audio Sample</td>
-            <td><input> <button>Upload</button></td>
-        </tr>
-        <tr>
-            <td><input> <button>URL</button></td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top;">About</td>
-            <td><textarea></textarea></td>
-        </tr>
-    </body>
-    <footer><tr><th align="center" colspan="3"><button>Submit</button></th></tr></footer>
-</table>
-</form>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-links">
+                <a href="Landing page.html" class="logo">ISO Talent</a>
+                <a href="#">About Us</a>
+                <a href="#" class="cta-button">List Your Venue</a>
+            </div>
+        </div>
+    </nav>
 
+    <div class="form-container">
+        <h1 class="form-title">Entertainer Account Registration</h1>
+        <p class="form-description">Please input your information below to register.</p>
+
+        <form class="registration-form">
+            <label>Name</label>
+            <input type="text">
+
+            <label>Representative's Name</label>
+            <input type="text">
+
+            <label>Address</label>
+            <input type="text">
+
+            <label>Postal Code</label>
+            <input type="text">
+
+            <label class="full-width">Entertainer Type</label>
+            <div class="checkbox-group full-width">
+                <input type="checkbox" id="musicBand">
+                <label for="musicBand">Music Band</label>
+                <input type="checkbox" id="performer">
+                <label for="performer">Performer</label>
+            </div>
+
+            <label>Phone</label>
+            <input type="text">
+
+            <label>Avatar Picture</label>
+            <input type="file">
+
+            <label class="full-width">Gallery</label>
+            <input type="file" class="full-width">
+            <input type="file" class="full-width">
+            <input type="file" class="full-width">
+
+            <label class="full-width">Video Sample</label>
+            <input type="file" class="full-width">
+            <input type="text" placeholder="Paste video URL here" class="full-width">
+
+            <label class="full-width">Audio Sample</label>
+            <input type="file" class="full-width">
+            <input type="text" placeholder="Paste audio URL here" class="full-width">
+
+            <label class="full-width">About</label>
+            <textarea class="full-width"></textarea>
+
+            <button type="submit" class="btn full-width">Submit</button>
+        </form>
+    </div>
+
+    <footer class="footer">
+        © 2025 ISO Talent. All rights reserved.
+    </footer>
 
 </body>
 </html>
