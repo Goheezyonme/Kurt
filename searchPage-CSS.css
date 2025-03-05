@@ -93,7 +93,7 @@ nav, header, section, footer {
 .hero-foodTruck {
     position: relative;
     height: 450px;
-    background: url("Kurt's_Image.jpg") center/cover no-repeat;
+    background: url("foodtruck-photo.jpg") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -104,7 +104,7 @@ nav, header, section, footer {
 .hero-musician {
     position: relative;
     height: 450px;
-    background: url("Kurt's_Image.jpg") center/cover no-repeat;
+    background: url("musicians-photo.jpg") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -115,7 +115,7 @@ nav, header, section, footer {
 .hero-catering {
     position: relative;
     height: 450px;
-    background: url("Kurt's_Image.jpg") center/cover no-repeat;
+    background: url("catering-photo.jpeg") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
