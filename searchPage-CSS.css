@@ -37,7 +37,14 @@ body, html {
     align-items: center;
     padding: 0 1.5rem;
 }
-
+.legal-terms{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+}
 .logo {
     font-size: 2rem;
     font-family: 'Dancing Script', cursive;
@@ -144,3 +151,9 @@ nav, header, section, footer {
 	color: #15BDA1
 }
 
+
+.ordered li{
+    padding-bottom: 25px;
+    text-align: justify;
+    text-justify: inter-word;
+}
