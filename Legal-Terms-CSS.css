@@ -22,16 +22,7 @@ body, html {
 	text-align: center;
 }
 
-.navbar {
-    background-color: #0799BB;
-    color: white;
-    padding: 1rem 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
-.navbar a{
-	font-family:Montserrat;
-}
 
 .container {
     width: 1200px;
@@ -60,16 +51,7 @@ body, html {
 	margin-right: 700px;
 }
 
-.nav-links a {
-    margin-left: 1rem;
-    text-decoration: none;
-    color: white;
-    transition: color 0.3s;
-}
 
-.nav-links a:hover {
-    color: #15BDA1;
-}
 
 
 .footer {
