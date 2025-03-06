@@ -1,60 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Venue Account Registration</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venue Account Registration</title>
+    <link rel="stylesheet" href="venue_css.css"> 
 </head>
 <body>
 
-<h1>Venue Account Registration</h1>
-<form>
-<table>
-    <head><tr><th>Please input your info</th></tr></head>
-    <body>
-        <tr>
-            <td>Name</td>
-            <td><input></td>
-        </tr>
-        <tr>
-            <td>Representan's Name</td>
-            <td><input></td>
-        </tr>
-        <tr>
-            <td>Address</td>
-            <td><input></td>
-        </tr>
-        <tr>
-            <td>Postal Code</td>
-            <td><input></td>
-        </tr>
-        <tr>
-            <td>Phone</td>
-            <td><input></td>
-        </tr>
-        <tr>
-            <td>Avatar pic</td>
-            <td><input> <button>Upload</button></td>
-        </tr>
-        <tr>
-            <td rowspan="3" style="vertical-align: top;">Gallery</td>
-            <td><input> <button>Upload</button></td>
-        </tr>
-        <tr>
-            
-            <td><input> <button>Upload</button></td>
-        </tr>
-        <tr>
-            
-            <td><input> <button>Upload</button></td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top;">About</td>
-            <td><textarea></textarea></td>
-        </tr>
-    </body>
-    <footer><tr><th align="center" colspan="3"><button>Submit</button></th></tr></footer>
-</table>
-</form>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-links">
+                <a href="Landing page.html" class="logo">ISO Talent</a>
+                <a href="#">About Us</a>
+                <a href="Entertainer_signin.html" class="cta-button">Become an Entertainer</a>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Registration Form -->
+    <div class="form-container">
+        <h1 class="form-title">Venue Account Registration</h1>
+        <p class="form-description">Please input your information below to register your venue.</p>
+
+        <form class="registration-form">
+            <label>Name</label>
+            <input type="text" required>
+
+            <label>Representative's Name</label>
+            <input type="text" required>
+
+            <label>Address</label>
+            <input type="text" required>
+
+            <label>Postal Code</label>
+            <input type="text" required>
+
+            <label>Phone</label>
+            <input type="tel" required>
+
+            <label>Avatar Picture</label>
+            <input type="file" accept="image/*">
+
+            <label class="full-width">Gallery</label>
+            <input type="file" class="full-width" accept="image/*">
+            <input type="file" class="full-width" accept="image/*">
+            <input type="file" class="full-width" accept="image/*">
+
+            <label class="full-width">About</label>
+            <textarea class="full-width" required></textarea>
+
+            <button type="submit" class="btn full-width">Submit</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        © 2025 ISO Talent. All rights reserved.
+    </footer>
 
 </body>
 </html>
