@@ -104,12 +104,14 @@ body {
     font-size: 28px;
     color: #0799bb;
     font-weight: 600;
+	font-family:Montserrat;
 }
 
 .form-description {
     text-align: center;
     font-size: 16px;
     margin-bottom: 20px;
+	font-family:Montserrat;
 }
 
 /* Form Layout */
@@ -124,6 +126,7 @@ body {
     color: #444;
     display: block;
     margin-bottom: 5px;
+	font-family:Montserrat;
 }
 
 .registration-form input,
@@ -176,6 +179,7 @@ body {
     font-size: 16px;
     text-align: center;
     width: 100%;
+	font-family:Montserrat;
 }
 
 .btn:hover {
