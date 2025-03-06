@@ -1,0 +1,159 @@
+body {
+    background-color: #FEC202;
+    color: #1f2937;
+    font-family: 'Poppins', sans-serif;
+	margin: 0;
+    padding: 0;
+    width: 100vw;
+    overflow-x: hidden;
+	height: 100%;
+}
+
+body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+		
+.tags{
+	margin-top: 20px;
+	flex: 1;
+	text-align: center;
+}
+
+.navbar {
+    background-color: #0799BB;
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+}
+.legal-terms{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+}
+.logo {
+    font-size: 2rem;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+	margin-right: 700px;
+}
+
+.nav-links a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #15BDA1;
+}
+
+
+.footer {
+    background-color: #0799BB;
+    text-align: center;
+    padding: 1.5rem 0;
+    color: white;
+}
+
+nav, header, section, footer {
+    width: 100%;
+}
+
+.tag{
+    font-size: 18px; /* Increase font size */
+    width: 200px; /* Set a specific width */
+    height: 50px; /* Set a specific height */
+	margin: 10px;
+    border: 2px solid black;
+	border-radius: 50px;
+    cursor: pointer;
+	background-color: grey;
+}
+
+#search{
+	font-size: 18px; /* Increase font size */
+    width: 150px; /* Set a specific width */
+    height: 25px; /* Set a specific height */
+	margin: 10px;
+    border: 2px solid black;
+	border-radius: 50px;
+    cursor: pointer;
+	background-color: #0799BB;
+}
+
+.hero-foodTruck {
+    position: relative;
+    height: 450px;
+    background: url("Kurt's_Image.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-musician {
+    position: relative;
+    height: 450px;
+    background: url("Kurt's_Image.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-catering {
+    position: relative;
+    height: 450px;
+    background: url("Kurt's_Image.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-family: 'Dancing Script', cursive;
+    color: #facc15;
+}
+
+.hero-content p{
+	color: #15BDA1
+}
+
+
+.ordered li{
+    padding-bottom: 25px;
+    text-align: justify;
+    text-justify: inter-word;
+}
