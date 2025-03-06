@@ -123,6 +123,39 @@ nav, header, section, footer {
     color: white;
 }
 
+.hero-accomodations {
+    position: relative;
+    height: 450px;
+    background: url("accomodations-photo.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-transport {
+    position: relative;
+    height: 450px;
+    background: url("transportation-photo.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-venues {
+    position: relative;
+    height: 450px;
+    background: url("venues-photo.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
 .overlay {
     position: absolute;
     inset: 0;
@@ -143,4 +176,3 @@ nav, header, section, footer {
 .hero-content p{
 	color: #15BDA1
 }
-
