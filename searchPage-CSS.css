@@ -29,6 +29,10 @@ body, html {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.navbar a{
+	font-family:Montserrat;
+}
+
 .container {
     width: 1200px;
     margin: 0 auto;
@@ -77,6 +81,7 @@ nav, header, section, footer {
 	border-radius: 50px;
     cursor: pointer;
 	background-color: grey;
+	font-family:Montserrat;
 }
 
 #search{
@@ -175,4 +180,12 @@ nav, header, section, footer {
 
 .hero-content p{
 	color: #15BDA1
+}
+
+.cta-button{
+	font-family:Montserrat;
+}
+
+#search{
+	font-family:Montserrat;
 }

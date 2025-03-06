@@ -29,6 +29,10 @@ body, html {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.navbar a{
+	font-family:Montserrat;
+}
+
 .container {
     width: 1200px;
     margin: 0 auto;
@@ -162,6 +166,10 @@ nav, header, section, footer {
     text-justify: inter-word;
 }
 
+.ordered li h3{
+	font-family:Montserrat;
+}
+
 /* Button Group */
 .button-group {
     display: flex;
@@ -175,6 +183,7 @@ nav, header, section, footer {
     padding: 0.8rem 1.5rem;
     border-radius: 5px;
     font-weight: bold;
+	font-family:Montserrat;
     text-decoration: none;
     font-size: 1rem;
     text-align: center;
@@ -189,6 +198,7 @@ nav, header, section, footer {
 
 .btn-alt {
     background: #0799bb;
+	font-family:Montserrat;
 }
 
 .btn-alt:hover {
