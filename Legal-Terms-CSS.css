@@ -186,3 +186,21 @@ nav, header, section, footer {
 .btn-alt:hover {
     background: #3b82f6;
 }
+
+.nav-links a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #15BDA1;
+}
+
+.cta-button {
+    background-color: #1e3a8a
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-weight: bold;
+    
