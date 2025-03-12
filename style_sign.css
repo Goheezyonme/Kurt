@@ -148,6 +148,7 @@ body {
     text-align: center;
     padding: 1.5rem 0;
     color: white;
-	position: relative;
-    bottom: 0;
+	position: absolute;
+    bottom: 0%;
+	width: 100%
 }
