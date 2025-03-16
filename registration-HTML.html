@@ -148,24 +148,30 @@
 		<h1 class="form-title">Food Truck registration</h1>
 		<p class="form-description">Please input your information below to register.</p>
         <form class="registration-form">
-            <label>Name</label>
-            <input type="text">
+             <label>Food truck Name</label>
+            <input id="foodtruck-name" type="text" required>
+
+            <label>Email</label>
+            <input id="foodtruck-email" type="email" required>
+
+            <label>Phone Number</label>
+            <input id="foodtruck-phone" type="tel" required>
+
+            <label>Location</label>
+            <input id="foodtruck-location" type="text" required>
 			
-			<label>Truck Name</label>
-			<input type="text">
-			
-            <label>Phone</label>
-            <input type="text">
+		<label class="full-width">Description</label>
+        <textarea id="foodtruck-desc" class="full-width" required></textarea>
+
+		<label class="full-width">Logo</label>
+        <input id="foodtruck-logo" type="file" class="full-width" accept="image/*">
 
             <label class="full-width">Gallery</label>
-            <input type="file" class="full-width">
-            <input type="file" class="full-width">
-            <input type="file" class="full-width">
+            <input id="foodtruck-pic1" type="file" class="full-width" accept="image/*">
+            <input id="foodtruck-pic2"type="file" class="full-width" accept="image/*">
+            <input id="foodtruck-pic3" type="file" class="full-width" accept="image/*">
 
-            <label class="full-width">About</label>
-            <textarea class="full-width"></textarea>
-
-            <button type="submit" class="btn full-width">Submit</button>
+            <button id="foodtruck-submit" type="submit" class="btn full-width">Submit</button>
         </form>
     </div>
 </div>
@@ -221,8 +227,8 @@
             <label>Phone Number</label>
             <input id="transport-phone" type="tel" required>
 
-            <label>Address</label>
-            <input id="venue-address" type="text" required>
+            <label>Location</label>
+            <input id="transport-location" type="text" required>
 
             <label>Vehicle Capacity</label>
             <input id="transport-capacity" type="number" min=0 required>
