@@ -144,6 +144,18 @@ body {
     grid-column: span 2;
 }
 
+.radio-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.radio-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px; 
+}
+
 /* Checkboxes */
 .checkbox-group {
     display: flex;

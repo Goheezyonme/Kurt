@@ -21,7 +21,7 @@
         </div>
     </nav>
 	
-	
+<!-- venue -->
 <div class="dropdown">
     <div class="dropdown-bar" onclick="toggleDropdownVenue()">
 		Register as a Venue
@@ -32,33 +32,68 @@
         <p class="form-description">Please input your information below to register your venue.</p>
         <form class="registration-form">
             <label>Venue's Name</label>
-            <input type="text" required>
+            <input id="venu-name" type="text" required>
 
-            <label>Representative's Name</label>
-            <input type="text" required>
+            <label>Email</label>
+            <input id="venue-email" type="email" required>
+
+            <label>Phone Number</label>
+            <input id="venue-phone" type="tel" required>
 
             <label>Address</label>
-            <input type="text" required>
+            <input id="venue-address" type="text" required>
 
-            <label>Postal Code</label>
-            <input type="text" required>
+            <label>Number of Bathrooms</label>
+            <input id="venue-bathrooms" type="number" min=0 required>
+			
+			<label>Maximum capacity</label>
+            <input id="venue-capacity" type="number" min=0 required>
+			
+			<label>Parking spots</label>
+            <input id="venue-parking" type="number" min=0 required>
+			
+			<label>Liquor License?</label>
+			<div class="radio-group">
+				<div class="radio-item">
+					<input type="radio" id="liquor-yes" name="liquor-license" value="yes" required>
+					<label for="liquor-yes" style="margin: 0;">Yes</label>
+				</div>
+			<div class="radio-item">
+				<input type="radio" id="liquor-no" name="liquor-license" value="no" required>
+				<label for="liquor-no" style="margin: 0;">No</label>
+			</div>
+		</div>
+		
+			<label>Kitchen?</label>
+			<div class="radio-group">
+				<div class="radio-item">
+					<input type="radio" id="kitchen-yes" name="kitchen" value="yes" required>
+					<label for="kitchen-yes" style="margin: 0;">Yes</label>
+				</div>
+			<div class="radio-item">
+				<input type="radio" id="kitchen-no" name="kitchen" value="no" required>
+				<label for="kitchen-no" style="margin: 0;">No</label>
+			</div>
+		</div>
+		
+		<label class="full-width">Description</label>
+        <textarea id="venue-desc" class="full-width" required></textarea>
 
-            <label>Phone</label>
-            <input type="tel" required>
+		<label class="full-width">Logo</label>
+        <input id="venue-logo" type="file" class="full-width" accept="image/*">
 
             <label class="full-width">Gallery</label>
-            <input type="file" class="full-width" accept="image/*">
-            <input type="file" class="full-width" accept="image/*">
-            <input type="file" class="full-width" accept="image/*">
+            <input id="venue-pic1" type="file" class="full-width" accept="image/*">
+            <input id="venue-pic2"type="file" class="full-width" accept="image/*">
+            <input id="venue-pic3" type="file" class="full-width" accept="image/*">
 
-            <label class="full-width">About</label>
-            <textarea class="full-width" required></textarea>
 
-            <button type="submit" class="btn full-width">Submit</button>
+            <button id="venue-submit" type="submit" class="btn full-width">Submit</button>
         </form>
     </div>
 </div>
   
+  <!-- Entertainer -->
 <div class="dropdown">
 	<div class="dropdown-bar" onclick="toggleDropdownEntertainer()">
 		Register as an Entertainer
@@ -103,6 +138,7 @@
     </div>
 </div>
 
+<!-- Food truck -->
 <div class="dropdown">
 	<div class="dropdown-bar" onclick="toggleDropdownFoodTruck()">
 		Register as a Food Truck
@@ -134,6 +170,7 @@
     </div>
 </div>
 
+<!-- Catering -->
 <div class="dropdown">
 	<div class="dropdown-bar" onclick="toggleDropdownCatering()">
 		Register as a Catering Service
@@ -165,6 +202,7 @@
     </div>
 </div>
 
+<!-- Transportation -->
 <div class="dropdown">
 	<div class="dropdown-bar" onclick="toggleDropdownTransportation()">
 		Register as a Transportation Service
@@ -174,55 +212,89 @@
 		<h1 class="form-title">Transportation Service registration</h1>
 		<p class="form-description">Please input your information below to register.</p>
         <form class="registration-form">
-            <label>Name</label>
-            <input type="text">
+            <label>Company Name</label>
+            <input id="transport-name" type="text" required>
+
+            <label>Email</label>
+            <input id="transport-email" type="email" required>
+
+            <label>Phone Number</label>
+            <input id="transport-phone" type="tel" required>
+
+            <label>Address</label>
+            <input id="venue-address" type="text" required>
+
+            <label>Vehicle Capacity</label>
+            <input id="transport-capacity" type="number" min=0 required>
 			
-			<label>Representative's Name</label>
-			<input type="text">
-			
-            <label>Phone</label>
-            <input type="text">
+			<label>Wheelchair Accessible?</label>
+			<div class="radio-group">
+				<div class="radio-item">
+					<input type="radio" id="wheelchair-yes" name="wheelchair-access" value="yes" required>
+					<label for="wheelchair-yes" style="margin: 0;">Yes</label>
+				</div>
+			<div class="radio-item">
+				<input type="radio" id="wheelchair-no" name="wheelchair-access" value="no" required>
+				<label for="wheelchair-no" style="margin: 0;">No</label>
+			</div>
+		</div>
+		
+		<label class="full-width">Description</label>
+        <textarea id="transport-desc" class="full-width" required></textarea>
+
+		<label class="full-width">Logo</label>
+        <input id="transport-logo" type="file" class="full-width" accept="image/*">
 
             <label class="full-width">Gallery</label>
-            <input type="file" class="full-width">
-            <input type="file" class="full-width">
-            <input type="file" class="full-width">
+            <input id="transport-pic1" type="file" class="full-width" accept="image/*">
+            <input id="transport-pic2"type="file" class="full-width" accept="image/*">
+            <input id="transport-pic3" type="file" class="full-width" accept="image/*">
 
-            <label class="full-width">About</label>
-            <textarea class="full-width"></textarea>
-
-            <button type="submit" class="btn full-width">Submit</button>
+            <button id="transport-submit" type="submit" class="btn full-width">Submit</button>
         </form>
     </div>
 </div>
     
+<!-- Accomodations -->
 <div class="dropdown">
 	<div class="dropdown-bar" onclick="toggleDropdownAccomodations()">
 		Register as an Accomodation
 		<span id="arrowAccomodations" class="arrow arrow-down">▼</span>
 	</div>
     <div id="dropdownContentAccomodations" class="dropdown-content">
-		<h1 class="form-title">Transportation Service registration</h1>
+		<h1 class="form-title">Accomodation registration</h1>
 		<p class="form-description">Please input your information below to register.</p>
         <form class="registration-form">
-            <label>Name</label>
-            <input type="text">
+                        <label>Accomodation Name</label>
+            <input id="accomodation-name" type="text" required>
+
+            <label>Email</label>
+            <input id="accomodation-email" type="email" required>
+
+            <label>Phone Number</label>
+            <input id="accomodation-phone" type="tel" required>
+
+            <label>Address</label>
+            <input id="accomodation-address" type="text" required>
+
+            <label>Number of Rooms</label>
+            <input id="accomodation-rooms" type="number" min=0 required>
 			
-			<label>Representative's Name</label>
-			<input type="text">
-			
-            <label>Phone</label>
-            <input type="text">
+			<label>Maximum capacity</label>
+            <input id="venue-capacity" type="number" min=0 required>
+		
+		<label class="full-width">Description</label>
+        <textarea id="accomodation-desc" class="full-width" required></textarea>
+
+		<label class="full-width">Logo</label>
+        <input id="accomodation-logo" type="file" class="full-width" accept="image/*">
 
             <label class="full-width">Gallery</label>
-            <input type="file" class="full-width">
-            <input type="file" class="full-width">
-            <input type="file" class="full-width">
+            <input id="accomodation-pic1" type="file" class="full-width" accept="image/*">
+            <input id="accomodation-pic2"type="file" class="full-width" accept="image/*">
+            <input id="accomodation-pic3" type="file" class="full-width" accept="image/*">
 
-            <label class="full-width">About</label>
-            <textarea class="full-width"></textarea>
-
-            <button type="submit" class="btn full-width">Submit</button>
+            <button id="accomodation-submit" type="submit" class="btn full-width">Submit</button>
         </form>
     </div>
 </div>	
