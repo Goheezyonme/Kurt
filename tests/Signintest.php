@@ -2,7 +2,7 @@
 use PHPUnit\Framework\TestCase;
 require 'signin.php';
 
-class SigninOperationsTest extends TestCase {
+class SigninTest extends TestCase {
     private $mysqli;
 
     protected function setUp(): void {
