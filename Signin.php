@@ -6,6 +6,19 @@ $user = "root";
 $pass = ""; 
 $dbname = "user_signups"; 
 
+function signInUser($conn, $email, $password) {
+    $result = getUserByEmail($conn, $email);
+    
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+        if (verifyUserPassword($user, $password)) {
+            return true; 
+        }
+    }
+    return false; 
+}
+
+
 function getDatabaseConnection($host, $user, $pass, $dbname) {
     $conn = new mysqli($host, $user, $pass, $dbname);
     if ($conn->connect_error) {
