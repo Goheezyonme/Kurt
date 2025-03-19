@@ -47,6 +47,6 @@ class Signuptest extends TestCase {
 
 		// Second insertion should throw an exception
 		insertUser($this->mysqli, $fullName, $email, $password);
-}
+	}
 }
 ?>
