@@ -6,7 +6,7 @@ class SigninTest extends TestCase {
     private $mysqli;
 
     protected function setUp(): void {
-        $this->mysqli = new mysqli("localhost", "root", "", "test_database");
+        $this->mysqli = new mysqli("localhost", "root", "mysql", "user_signups");
         $this->mysqli->query("
             CREATE TEMPORARY TABLE users (
                 id INT PRIMARY KEY AUTO_INCREMENT,

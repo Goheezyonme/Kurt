@@ -3,7 +3,7 @@ session_start();
 
 $host = "localhost";
 $user = "root";  
-$pass = ""; 
+$pass = "mysql"; 
 $dbname = "user_signups"; 
 
 function signInUser($conn, $email, $password) {

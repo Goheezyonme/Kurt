@@ -2,11 +2,11 @@
 use PHPUnit\Framework\TestCase;
 require 'signup.php';
 
-class SignupOperationsTest extends TestCase {
+class Signuptest extends TestCase {
     private $mysqli;
 
     protected function setUp(): void {
-        $this->mysqli = new mysqli("localhost", "root", "", "test_database");
+        $this->mysqli = new mysqli("localhost", "root", "mysql", "user_signups");
 
         // Create a temporary users table for testing
         $this->mysqli->query("
