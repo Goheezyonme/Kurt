@@ -38,6 +38,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } /*else {
     echo $transport_location."\n";
     }*/
+	
+	$transport_city = htmlspecialchars($_POST['transport-city']);
+    if (empty($transport_city)) {
+    echo "transport_city is empty";
+    } /*else {
+    echo $transport_city."\n";
+    }*/
+	
+	$transport_website = htmlspecialchars($_POST['transport-website']);
+    if (empty($transport_website)) {
+    echo "transport_website is empty";
+    } /*else {
+    echo $transport_website."\n";
+    }*/
+	
+	$transport_postalCode = htmlspecialchars($_POST['transport-postalCode']);
+    if (empty($transport_postalCode)) {
+    echo "transport_postalCode is empty";
+    } /*else {
+    echo $transport_postalCode."\n";
+    }*/
 
     $transport_capacity = htmlspecialchars($_POST['transport-capacity']);
     if (empty($transport_capacity)) {
@@ -58,6 +79,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "transport_desc is empty";
     } /*else {
     echo $transport_desc."\n";
+    }*/
+	
+	$transport_logo = htmlspecialchars($_POST['transport-logo']);
+    if (empty($transport_logo)) {
+    echo "transport_logo is empty";
+    } /*else {
+    echo $transport_logo."\n";
     }*/
 
     $transport_pic1 = htmlspecialchars($_POST['transport-pic1']);
@@ -88,15 +116,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql="INSERT INTO `transportations`".
     " ( `name`, `logo`, `address`, ".
     " `city`, `postal_code`, `phone`, ".
-    " `email`, `photo1`, `photo2`, ".
+    " `email`, `web`, `photo1`, `photo2`, ".
     " `photo3`, `description`, `review_stars`, ".
     " `review_desc`, `vehicle_capacities`, `wheel_chair_accessible_vehicles`) ".
     " VALUES ".
-    " ('".$transport_name."','','',".
-    " '','','".$transport_phone."',".
-    " '".$transport_email."','".$transport_pic1."','".$transport_pic2."',".
+    " ('".$transport_name."','".$transport_logo."','".$transport_location."',".
+    " '".$transport_city."','".$transport_postalCode."',".
+    " '".$transport_phone."',".
+    " '".$transport_email."','".$transport_website."',".
+    " '".$transport_pic1."','".$transport_pic2."',".
     " '".$transport_pic3."','".$transport_desc."','0',".
     " '','".$transport_capacity."','".(($wheelchair_access == 'yes') ? 1 : 0)."')";
+
+
     
     //echo $sql;
 

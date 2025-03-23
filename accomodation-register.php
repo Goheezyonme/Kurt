@@ -33,6 +33,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } /*else {
     echo $accomodation_address."\n";
     }*/
+	
+	$accomodation_city = htmlspecialchars($_POST['accomodation-city']);
+    if (empty($accomodation_city)) {
+    echo "accomodation_city is empty";
+    } /*else {
+    echo $accomodation_city."\n";
+    }*/
+	
+	$accomodation_website = htmlspecialchars($_POST['accomodation-website']);
+    if (empty($accomodation_website)) {
+    echo "accomodation_website is empty";
+    } /*else {
+    echo $accomodation_website."\n";
+    }*/
+	
+	$accomodation_postalCode = htmlspecialchars($_POST['accomodation-postalCode']);
+    if (empty($accomodation_postalCode)) {
+    echo "accomodation_postalCode is empty";
+    } /*else {
+    echo $accomodation_postalCode."\n";
+    }*/
     
     $accomodation_rooms = htmlspecialchars($_POST['accomodation-rooms']);
     if (empty($accomodation_rooms)) {
@@ -80,17 +101,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $accomodation=$accomodation_name;
 
     $sql="INSERT INTO `accommodations`".
-    " ( `name`, `logo`, `address`,".
-    "  `city`, `postal_code`, `phone`, ".
-    " `email`, `photo1`, `photo2`, ".
+    " ( `name`, `logo`, `address`, ".
+    " `city`, `postal_code`, `phone`, ".
+    " `email`, `web`, `photo1`, `photo2`, ".
     " `photo3`, `description`, `review_stars`, ".
     " `review_desc`, `num_rooms`) ".
     " VALUES ".
     " ('".$accomodation_name."','".$accomodation_logo."','".$accomodation_address."',".
-    " '','','".$accomodation_phone."',".
-    " '','".$accomodation_pic1."','".$accomodation_pic2."',".
+    " '".$accomodation_city."','".$accomodation_postalCode."',".
+    " '".$accomodation_phone."',".
+    " '".$accomodation_email."','".$accomodation_website."',".
+    " '".$accomodation_pic1."','".$accomodation_pic2."',".
     " '".$accomodation_pic3."','".$accomodation_desc."','0',".
     " '','".$accomodation_rooms."')";
+
     
    // echo $sql;
 
