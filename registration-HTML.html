@@ -42,6 +42,17 @@
 
             <label>Address</label>
             <input id="venue-address" name="venue-address"  type="text" required>
+			
+			<label>City</label>
+            <input id="venue-city" name="venue-city"  type="text" required>
+			
+			<label>Postal Code</label>
+            <input id="venue-postalCode" name="venue-postalCode"  type="text" 
+			pattern="^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$" required>
+			
+			<label>Website link</label>
+            <input id="venue-website" name="venue-website"  type="text" 
+			pattern="^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w.-]*)*\/?$  " required>
 
             <label>Number of Bathrooms</label>
             <input id="venue-bathrooms" name="venue-bathrooms"  type="number" min=0 required>
