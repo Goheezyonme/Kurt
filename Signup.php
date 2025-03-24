@@ -2,7 +2,7 @@
 session_start();
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "mysql";
 $dbname = "user_signups";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
