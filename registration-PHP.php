@@ -361,6 +361,17 @@ function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
 
             <label>Location</label>
             <input id="transport-location"  name="transport-location" type="text" required>
+			
+			<label>City</label>
+            <input id="transport-city" name="transport-city"  type="text" required>
+			
+			<label>Postal Code</label>
+            <input id="transport-postalCode" name="transport-postalCode"  type="text" 
+			pattern="^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$" required>
+			
+			<label>Website link</label>
+            <input id="transport-website" name="transport-website"  type="text" 
+			pattern="^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w.-]*)*\/?$  " required>
 
             <label>Vehicle Capacity</label>
             <input id="transport-capacity" name="transport-capacity" type="number" min=0 required>
