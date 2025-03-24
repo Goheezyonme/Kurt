@@ -414,6 +414,17 @@ function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
 
             <label>Address</label>
             <input id="accomodation-address"  name="accomodation-address" type="text" required>
+			
+			<label>City</label>
+            <input id="accomodation-city" name="accomodation-city"  type="text" required>
+			
+			<label>Postal Code</label>
+            <input id="accomodation-postalCode" name="accomodation-postalCode"  type="text" 
+			pattern="^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$" required>
+			
+			<label>Website link</label>
+            <input id="accomodation-website" name="accomodation-website"  type="text" 
+			pattern="^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w.-]*)*\/?$  " required>
 
             <label>Number of Rooms</label>
             <input id="accomodation-rooms"  name="accomodation-rooms" type="number" min=0 required>
