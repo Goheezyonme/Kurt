@@ -4,7 +4,7 @@ session_start();
 $host = "localhost";
 $user = "root";  
 $pass = "mysql"; 
-$dbname = "user_signups"; 
+$dbname = "isotalent"; 
 
 // Connect to the database
 $conn = new mysqli($host, $user, $pass, $dbname);
