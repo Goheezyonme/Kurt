@@ -3,17 +3,22 @@ session_start();
 
 $host = "localhost";
 $user = "root";  
-$pass = ""; 
+$pass = "mysql"; 
 $dbname = "user_signups"; 
 
-function getDatabaseConnection($host, $user, $pass, $dbname) {
-    $conn = new mysqli($host, $user, $pass, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    return $conn;
+// Connect to the database
+$conn = new mysqli($host, $user, $pass, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
+// Redirect if already logged in
+if (isset($_SESSION["user_id"])) {
+    header("Location: category-select-HTML.php");
+    exit();
+}
+
+// Function to fetch user by email
 function getUserByEmail($conn, $email) {
     $sql = "SELECT * FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
@@ -22,31 +27,31 @@ function getUserByEmail($conn, $email) {
     return $stmt->get_result();
 }
 
-function verifyUserPassword($user, $password) {
-    return password_verify($password, $user["password"]);
-}
-
-$conn = getDatabaseConnection($host, $user, $pass, $dbname);
-
+// Handle login request
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+    $email = trim($_POST["email"]);
+    $password = trim($_POST["password"]);
 
     $result = getUserByEmail($conn, $email);
 
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
-        if (verifyUserPassword($user, $password)) {
+
+        // Verify hashed password
+        if (password_verify($password, $user["password"])) {
             $_SESSION["user_id"] = $user["id"];
             $_SESSION["email"] = $user["email"];
-            header("Location: category-select-HTML.html");
+            $_SESSION["full_name"] = $user["full_name"];
+
+            // Redirect to the protected page
+            header("Location: category-select-HTML.php");
             exit();
         } else {
-            echo "<p style='color:red; text-align:center;'>Invalid password.</p>";
+            $error = "Invalid password.";
         }
     } else {
-        echo "<p style='color:red; text-align:center;'>No user found with this email.</p>";
+        $error = "No user found with this email.";
     }
-    $conn->close();
 }
 ?>
+

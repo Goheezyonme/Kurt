@@ -38,6 +38,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } /*else {
     echo $venue_address."\n";
     }*/
+	
+	$venue_city = htmlspecialchars($_POST['venue-city']);
+    if (empty($venue_city)) {
+    echo "venue_city is empty";
+    } /*else {
+    echo $venue_city."\n";
+    }*/
+	
+	$venue_website = htmlspecialchars($_POST['venue-website']);
+    if (empty($venue_website)) {
+    echo "venue_website is empty";
+    } /*else {
+    echo $venue_website."\n";
+    }*/
+	
+	$venue_postalCode = htmlspecialchars($_POST['venue-postalCode']);
+    if (empty($venue_postalCode)) {
+    echo "venue_postalCode is empty";
+    } /*else {
+    echo $venue_postalCode."\n";
+    }*/
 
     $venue_bathrooms = htmlspecialchars($_POST['venue-bathrooms']);
     if (empty($venue_bathrooms)) {
@@ -114,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql="INSERT INTO `venues`".
     "( `name`, `logo`,".
     " `address`, `city`, `postal_code`,".
-    " `phone`, `email`, `photo1`,".
+    " `phone`, `email`, `web`, `photo1`,".
     " `photo2`, `photo3`, `description`,".
     "  `maximum_capacity`,".
     " `liquor_license`, `kitchen_available`, `bathrooms_available`,".
@@ -122,10 +143,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     "VALUES ".
     "('".$venue_name."','".$venue_logo."',".
     "'".$venue_address."',".
-    "'','','".$venue_phone."',".
-    "'".$venue_email."','".$venue_pic1."','".$venue_pic2."',".
+    "'".$venue_city."','".$venue_postalCode."',".
+    "'".$venue_phone."',".
+    "'".$venue_email."','".$venue_website."',".
+    "'".$venue_pic1."','".$venue_pic2."',".
     "'".$venue_pic3."','".$venue_desc."','".$venue_capacity."','".(($liquor_license == 'yes') ? 1 : 0)."',".
     "'".(($kitchen == 'yes') ? 1 : 0)."','".$venue_bathrooms."','".$venue_parking."',0,'')";
+
     
     //echo $sql;
 

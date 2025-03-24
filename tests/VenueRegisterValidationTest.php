@@ -2,7 +2,7 @@
 use PHPUnit\Framework\TestCase;
 require 'venue_operations.php'; // Include the procedural script
 
-class VenueOperationsTest extends TestCase {
+class VenueRegisterValidationTest extends TestCase {
     private $mysqli;
 
     protected function setUp(): void {
@@ -38,20 +38,37 @@ class VenueOperationsTest extends TestCase {
         // Drop the temporary table after testing
         $this->mysqli->query("DROP TABLE IF EXISTS venues");
         $this->mysqli->close();
+		$_POST = [];
     }
 
-    public function testInsertVenue(): void {
-        // Insert test data into the temporary table
-        $this->mysqli->query("
-            INSERT INTO venues (name, logo, address, phone, email, description, maximum_capacity, liquor_license, kitchen_available, bathrooms_available, parking_available)
-            VALUES ('Test Venue', 'http://example.com/logo.png', '123 Test St', '123-456-7890', 'test@example.com', 'A test venue description.', 100, 1, 1, 2, 10)
-        ");
+    public function testMissingNameField(): void {
+        // Simulate POST data with missing 'name' field
+        $_POST = [
+            'venue-name' => '', // Missing name
+            'venue-email' => 'test@example.com',
+            'venue-phone' => '123-456-7890',
+            'venue-address' => '123 Test St',
+            'venue-bathrooms' => 2,
+            'venue-capacity' => 100,
+            'venue-parking' => 50,
+            'liquor-license' => 'yes',
+            'kitchen' => 'yes',
+            'venue-desc' => 'Test venue description',
+            'venue-logo' => 'http://example.com/logo.png',
+            'venue-pic1' => 'http://example.com/pic1.png',
+            'venue-pic2' => 'http://example.com/pic2.png',
+            'venue-pic3' => 'http://example.com/pic3.png',
+        ];
 
-        // Call the function to get the count of venues
-        $count = getVenueCount($this->mysqli);
+        // Capture any output and include the script
+        ob_start();
+        include 'venue-register.php';
+        ob_end_clean();
 
-        // Assert the count is 1 (indicating successful insert)
-        $this->assertEquals(1, $count);
+        // Verify no rows were inserted
+        $result = $this->mysqli->query("SELECT COUNT(*) AS count FROM venues");
+        $row = $result->fetch_assoc();
+        $this->assertEquals(0, $row['count'], "No rows should be inserted when a required field is missing.");
     }
 }
 ?>
