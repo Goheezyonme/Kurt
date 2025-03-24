@@ -359,7 +359,7 @@ function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
             <label>Phone Number</label>
             <input id="transport-phone" name="transport-phone" type="tel" required>
 
-            <label>Location</label>
+            <label>Address</label>
             <input id="transport-location"  name="transport-location" type="text" required>
 			
 			<label>City</label>
