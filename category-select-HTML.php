@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+$is_logged_in = isset($_SESSION["user_id"]);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +13,7 @@
     <title>ISO Talent | Discover Premium Event Venues</title>
     <link rel="stylesheet" href="category-select-CSS.css">
     <script src="category-select-script.js"></script>
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -14,28 +21,37 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-links">
-				<a href="Landing page.html" class="logo">Home</a>
+                <a href="Landing page.html" class="logo">Home</a>
                 <a href="about-HTML.html">About Us</a>
-                <a href="registration-HTML.html" class="cta-button">Promote Yourself</a>
-				<a href="category-select-HTML.html">Search</a>
+                <?php if ($is_logged_in): ?>
+                    <a href="registration-HTML.html" class="cta-button">Promote Yourself</a>
+                <?php endif; ?>
+                <a href="category-select-HTML.php">Search</a>
+
+                <?php if ($is_logged_in): ?>
+                    <span class="user-welcome">Welcome, <?php echo htmlspecialchars($_SESSION["email"]); ?>!</span>
+                    <a href="logout.php" class="cta-button">Log Out</a>
+                <?php else: ?>
+                    <span class="user-welcome">You are browsing as a guest. <a href="signin.html">Sign in</a> for more features!</span>
+                <?php endif; ?>
             </div>
         </div>
     </nav>
-	
-	<header class="hero">
+
+    <header class="hero">
         <div class="overlay"></div>
         <div class="hero-content">
             <h1>Search our databases</h1>
             <p style="font-family:Montserrat; font-size:20px">Browse our wide array of services, from food to entertainment, all sourced locally in the Okanagan.</p>
         </div>
     </header>
-	
-	 <!-- Featured Venues -->
+
+    <!-- Featured Categories -->
     <section class="featured">
         <h2 style="color: #15BDA1; font-family:Montserrat">Featured Categories</h2>
         <div class="category-grid">
             <div class="category-card">
-                <img src="foodtruck-photo.jpg" alt="food truck">
+                <img src="foodtruck-photo.jpg" alt="Food Truck">
                 <h3>Food Trucks</h3>
                 <button id="foodTruckSearch">Search Food Trucks</button>
             </div>
@@ -49,24 +65,23 @@
                 <h3>Catering</h3>
                 <button id="cateringSearch">Search Catering</button>
             </div>
-			<div class="category-card">
-                <img src="accomodations-photo.jpg" alt="Accomodations">
-                <h3>Accomodations</h3>
-                <button id="accomodationSearch">Search Accomodations</button>
+            <div class="category-card">
+                <img src="accomodations-photo.jpg" alt="Accommodations">
+                <h3>Accommodations</h3>
+                <button id="accommodationSearch">Search Accommodations</button>
             </div>
-			<div class="category-card">
+            <div class="category-card">
                 <img src="transportation-photo.jpg" alt="Transportation">
                 <h3>Transportation</h3>
                 <button id="transportationSearch">Search Transportation</button>
             </div>
-			<div class="category-card">
+            <div class="category-card">
                 <img src="venues-photo.jpg" alt="Venues">
                 <h3>Venues</h3>
                 <button id="venueSearch">Search Venues</button>
             </div>
         </div>
     </section>
-
 
     <!-- Footer -->
     <footer class="footer">
