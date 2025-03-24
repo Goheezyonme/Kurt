@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["user_email"] = $email;
 
         // Redirect to the protected page
-        header("Location: protected.php");
+        header("category-select-php.php");
         exit();
     } else {
         echo "Error: Could not insert user.";

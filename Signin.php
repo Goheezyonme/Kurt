@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 
 // Redirect if already logged in
 if (isset($_SESSION["user_id"])) {
-    header("Location: category-select-HTML.php");
+    header("Location: category-select-php.php");
     exit();
 }
 
