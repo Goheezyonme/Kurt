@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 	
 	transport.addEventListener('click', () => {
-    window.location.href = "TransportSearch.html";
+    window.location.href = "TransportSearch.php";
 	});
 	
 	accomodations.addEventListener('click', () => {
@@ -29,4 +29,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	venues.addEventListener('click', () => {
     window.location.href = "VenuesSearch.html";
 	});
+	
 });
