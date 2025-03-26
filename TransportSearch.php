@@ -22,11 +22,11 @@
         </div>
     </nav>
 	
-	<header class="hero-venues">
+	<header class="hero-transport">
         <div class="overlay"></div>
         <div class="hero-content">
-            <h1>Find somehwhere that's fun for all!</h1>
-            <p  style="font-family:Montserrat">Find the perfect venue to host your deam events!</p>
+            <h1>Find a way to get around!</h1>
+            <p  style="font-family:Montserrat">Search for your preferred means of transportation around the beautiful Okanagan!</p>
         </div>
     </header>
 	
@@ -36,16 +36,15 @@
 
 
  <div class="tags">
-	<h2 style="color: #15BDA1; font-family:Montserrat">Venues</h2>
-        <button class="tag">Hotels</button>
-        <button class="tag">Conference Centers</button>
-        <button class="tag">Banquet Halls</button>
-        <button class="tag">Bars and Breweries</button>
-        <button class="tag">Wineries</button>
-        <button class="tag">Sports Clubs</button>
+	<h2 style="color: #15BDA1; font-family:Montserrat">Transportation Types</h2>
+        <button class="tag">Naramata Taxi</button>
+        <button class="tag">Other Taxi Services</button>
+        <button class="tag">Chinese</button>
+        <button class="tag">Chauffer Services</button>
+        <button class="tag">Ride Sharing Services</button>
+        <button class="tag">Car Rental</button>
 		<br><br>
-        <button class="tag">Restaurants</button>
-        <button class="tag">Theatres</button>
+        <button class="tag">Rental buses</button>
 		<br><br>
 		<button class="button" id="search">Search</button>
     </div>
