@@ -1,17 +1,15 @@
 <?php
+include 'connection-php.php';
 
-
-$local_servername = "localhost";
-$local_username = "root";
-$local_password = "mysql";
 
 $accomodation="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //print_r($_POST);
-
+    //die();
     
+
     
     $accomodation_name = htmlspecialchars($_POST['accomodation-name']);
     if (empty($accomodation_name)) {
@@ -41,14 +39,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo $accomodation_city."\n";
     }*/
 	
-	$accomodation_website = htmlspecialchars($_POST['accomodation-website']);
+	$accomodation_website = htmlspecialchars($_POST['accomodation-web']);
     if (empty($accomodation_website)) {
     echo "accomodation_website is empty";
     } /*else {
     echo $accomodation_website."\n";
     }*/
 	
-	$accomodation_postalCode = htmlspecialchars($_POST['accomodation-postalCode']);
+	$accomodation_email = htmlspecialchars($_POST['accomodation-email']);
+    if (empty($accomodation_email)) {
+    echo "accomodation_email is empty";
+    } /*else {
+    echo $accomodation_email."\n";
+    }*/
+	
+	$accomodation_postalCode = htmlspecialchars($_POST['accomodation-postal_code']);
     if (empty($accomodation_postalCode)) {
     echo "accomodation_postalCode is empty";
     } /*else {
@@ -68,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } /*else {
     echo $accomodation_desc."\n";
     }*/
-    
+
     $accomodation_logo = htmlspecialchars($_POST['accomodation-logo']);
     if (empty($accomodation_logo)) {
     echo "accomodation_logo is empty";
@@ -108,25 +113,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     " `review_desc`, `num_rooms`) ".
     " VALUES ".
     " ('".$accomodation_name."','".$accomodation_logo."','".$accomodation_address."',".
-    " '".$accomodation_city."','".$accomodation_postalCode."',".
-    " '".$accomodation_phone."',".
-    " '".$accomodation_email."','".$accomodation_website."',".
-    " '".$accomodation_pic1."','".$accomodation_pic2."',".
+    " '".$accomodation_city."','".$accomodation_postalCode."', '".$accomodation_phone."',".
+    " '".$accomodation_email."','".$accomodation_website."', '".$accomodation_pic1."','".$accomodation_pic2."',".
     " '".$accomodation_pic3."','".$accomodation_desc."','0',".
-    " '','".$accomodation_rooms."')";
+    " '".$accomodation_desc."','".$accomodation_rooms."')";
 
     
-   // echo $sql;
+    //echo $sql;
+    //die();
 
-
-
- 
-    $servername = $local_servername;
-    $username = $local_username;
-    $password = $local_password;
     
     // Create connection
-    $conn = new mysqli($servername, $username, $password,'isotalent');
+    $conn = new mysqli($servername, $username, $password,$dbname);
     
     // Check connection
     if ($conn->connect_error) {
@@ -142,5 +140,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <script type="text/javascript">
 alert("accomodation '<?php echo $accomodation; ?>' created.");
-window.location.href = "registration-HTML.html";
+window.location.href = "registration-PHP.php";
 </script>

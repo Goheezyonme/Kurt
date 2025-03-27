@@ -1,12 +1,9 @@
 <?php
-$local_servername = "localhost";
-$local_username = "root";
-$local_password = "mysql";
-$local_db="isotalent";
+include 'connection-php.php';
 
-function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
+function generateSelectFromSql($sql,$servername,$username,$password,$db){
     // Create connection
-    $conn = new mysqli($servernamem, $username, $password,$db);
+    $conn = new mysqli($servername, $username, $password,$db);
 
     // Check connection
     if ($conn->connect_error) {
@@ -37,7 +34,7 @@ function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
             <div class="nav-links">
 				<a href="Landing page.html" class="logo">Home</a>
                 <a href="about-HTML.html">About Us</a>
-                <a href="registration-HTML.html" class="cta-button">Promote Yourself</a>
+                <a href="registration-PHP.php" class="cta-button">Promote Yourself</a>
 				<a href="category-select-HTML.html">Search</a>
             </div>
         </div>
@@ -62,19 +59,17 @@ function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
             <label>Phone Number</label>
             <input id="venue-phone" name="venue-phone"  type="tel" required>
 
+            <label>Web</label>
+            <input id="venue-website" name="venue-website" type="url" required>
+
             <label>Address</label>
             <input id="venue-address" name="venue-address"  type="text" required>
-			
-			<label>City</label>
-            <input id="venue-city" name="venue-city"  type="text" required>
-			
-			<label>Postal Code</label>
-            <input id="venue-postalCode" name="venue-postalCode"  type="text" 
-			pattern="^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$" required>
-			
-			<label>Website link</label>
-            <input id="venue-website" name="venue-website"  type="text" 
-			pattern="^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w.-]*)*\/?$  " required>
+            
+            <label>City</label>
+            <?php citiesSelect("venue-city"); ?><!--                                                            -->
+
+            <label>Postal Code</label>
+            <input id="venue-postal_code" name="venue-postal_code"  type="text" required>
 
             <label>Number of Bathrooms</label>
             <input id="venue-bathrooms" name="venue-bathrooms"  type="number" min=0 required>
@@ -126,7 +121,7 @@ function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
     </div>
 </div>
   
-  <!-- Entertainer -->
+<!-- Entertainer -->
 <div class="dropdown">
 	<div class="dropdown-bar" onclick="toggleDropdownEntertainer()">
 		Register as an Entertainer
@@ -139,7 +134,26 @@ function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
             <label>Name</label>
             <input type="text" id="entertainer-name" name="entertainer-name" required>
 
-<!--
+            <label>Email</label>
+            <input id="entertainer-email" name="entertainer-email" type="email" required>
+
+            <label>Phone Number</label>
+            <input id="entertainer-phone" name="entertainer-phone"  type="tel" required>
+
+            <label>Web</label>
+            <input id="entertainer-website" name="entertainer-website" type="url" required>
+
+            <label>Address</label>
+            <input id="entertainer-address" name="entertainer-address"  type="text" required>
+            
+            <label>City</label>
+            <?php citiesSelect("entertainer-city"); ?><!--                                                            -->
+
+            <label>Postal Code</label>
+            <input id="entertainer-postal_code" name="entertainer-postal_code"  type="text" required>
+
+
+            <!--
             <label class="full-width">Entertainer Type</label>
             <div class="checkbox-group full-width">
                 <input type="checkbox" id="musicBand">
@@ -147,8 +161,69 @@ function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
                 <input type="checkbox" id="performer">
                 <label for="performer">Performer</label>
             </div>-->
-            <label>Phone</label>
-            <input type="tel" id="entertainer-phone" name="entertainer-phone" required>
+
+
+            <label>Music tag 1</label>
+            <select name="entertainer-genre1" id="entertainer-genre1"  class="form-select" >
+            <?php
+            $sql="SELECT ID , genre as type FROM `musician_genre` where is_valid=1 order by genre asc";
+
+            $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
+
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                echo "<option value='".$row["ID"]."'>".$row["type"]."</option>\n";
+                }
+            } else {
+                echo "0 results";
+            }
+
+            ?>
+            </select>
+            <label>Music tag 2</label>
+            <select name="entertainer-genre2" id="entertainer-genre2"  class="form-select" >
+            <?php
+            $sql="SELECT ID , genre as type FROM `musician_genre` where is_valid=1 order by genre asc";
+
+            $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
+
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                echo "<option value='".$row["ID"]."'>".$row["type"]."</option>\n";
+                }
+            } else {
+                echo "0 results";
+            }
+
+            ?>
+            </select>
+            <label>Music tag 3</label>
+            <select name="entertainer-genre3" id="entertainer-genre3"  class="form-select" >
+            <?php
+            $sql="SELECT ID , genre as type FROM `musician_genre` where is_valid=1 order by genre asc";
+
+            $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
+
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                echo "<option value='".$row["ID"]."'>".$row["type"]."</option>\n";
+                }
+            } else {
+                echo "0 results";
+            }
+
+            ?>
+            </select>
+
+
+            <label >Area of Operation</label>
+            <?php serviceAreas("entertainer-service_area",$servername,$username,$password,$dbname);?>
+
+            <label class="full-width">Logo</label>
+            <input id="entertainer-logo" name="entertainer-logo"  type="url" placeholder="Paste img URL here" class="full-width" accept="image/*">
 
             <label class="full-width">Gallery</label>
             <input type="url" placeholder="Paste img URL here" class="full-width"  id="entertainer-pic1" name="entertainer-pic1">
@@ -187,17 +262,88 @@ function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
             <label>Email</label>
             <input id="foodtruck-email"  name="foodtruck-email" type="email" required>
 
+            <label>Web Site</label>
+            <input id="foodtruck-web"  name="foodtruck-web" type="url" required>
+
             <label>Phone Number</label>
-            <input id="foodtruck-phone"  name="foodtruck-phone" type="tel" required>
+            <input id="foodtruck-phone" name="foodtruck-phone"  type="tel" required>
 
-            <label>Location</label>
-            <input id="foodtruck-location"  name="foodtruck-location" type="text" required>
+            <label>Address</label>
+            <input id="foodtruck-address" name="foodtruck-address"  type="text" required>
+            
+            <label>City</label>
+            <?php citiesSelect("foodtruck-city"); ?><!--                                                            -->
+
+            <label>Postal Code</label>
+            <input id="foodtruck-postal_code" name="foodtruck-postal_code"  type="text" required>
+
+
+            <!--<label>Location</label>
+            <input id="foodtruck-location"  name="foodtruck-location" type="text" required>-->
+            
+            <label>Food tag 1</label>
+            <select name="foodtruck-food1" id="foodtruck-food1"  class="form-select" >
+            <?php
+            $sql="SELECT ID,type FROM `foodtruck_foods` where is_valid=1 order by type asc";
+
+            $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
+
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                echo "<option value='".$row["ID"]."'>".$row["type"]."</option>\n";
+                }
+            } else {
+                echo "0 results";
+            }
+
+            ?>
+            </select>
+            <label>Food tag 2</label>
+            <select name="foodtruck-food2" id="foodtruck-food2"  class="form-select" >
+            <?php
+            $sql="SELECT ID,type FROM `foodtruck_foods`  order by type asc";
+
+            $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
+
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                echo "<option value='".$row["ID"]."'>".$row["type"]."</option>\n";
+                }
+            } else {
+                echo "0 results";
+            }
+
+            ?>
+            </select>
+            <label>Food tag 3</label>
+            <select name="foodtruck-food3" id="foodtruck-food3"  class="form-select" >
+            <?php
+            $sql="SELECT ID,type FROM `foodtruck_foods`  order by type asc";
+
+            $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
+
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                echo "<option value='".$row["ID"]."'>".$row["type"]."</option>\n";
+                }
+            } else {
+                echo "0 results";
+            }
+
+            ?>
+            </select>
+
+            <label >Area of Operation</label>
+            <?php serviceAreas("foodtruck-service_area",$servername,$username,$password,$dbname);?>
 			
-		<label class="full-width">Description</label>
-        <textarea id="foodtruck-desc"  name="foodtruck-desc" class="full-width" required></textarea>
+            <label class="full-width">Description</label>
+            <textarea id="foodtruck-desc"  name="foodtruck-desc" class="full-width" required></textarea>
 
-		<label class="full-width">Logo</label>
-        <input id="foodtruck-logo"  name="foodtruck-logo"  placeholder="Paste img URL here"  type="url" class="full-width" accept="image/*">
+            <label class="full-width">Logo</label>
+            <input id="foodtruck-logo"  name="foodtruck-logo"  placeholder="Paste img URL here"  type="url" class="full-width" accept="image/*">
 
             <label class="full-width">Gallery</label>
             <input id="foodtruck-pic1"  name="foodtruck-pic1" type="url" class="full-width"  placeholder="Paste img URL here"  accept="image/*">
@@ -231,44 +377,19 @@ function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
             <label>Address</label>
             <input id="catering-address" name="catering-address"  type="text" required>
             <label>City</label>
-            <!--input id="catering-city" name="catering-city"  type="text" required>-->
-            <select name="catering-city" id="catering-city"  class="form-select" >
-                <option value="Kelowna, B.C.">Kelowna, B.C.</option>
-                <option value="Oliver, B.C.">Oliver, B.C.</option>
-                <option value="Osoyoos, B.C.">Osoyoos, B.C.</option>
-                <option value="Penticton, B.C.">Penticton, B.C.</option>
-                <option value="Vernon, B.C.">Vernon, B.C.</option>
-                <option value="West Kelowna, B.C.">West Kelowna, B.C.</option>
-                <option value="Summerland, B.C.">Summerland, B.C.</option>
-            </select>
+            <?php citiesSelect("catering-city"); ?>
             <label>Postal Code</label>
             <input id="catering-postal_code" name="catering-postal_code"  type="text" required>
             <label >Web Site</label>
             <input id="catering-web"  name="catering-web" type="url"  >
             <label >Area of Operation</label>
-            <select name="catering-service_area[]" id="catering-service_area  "  class="form-select" multiple="multiple">
-                <?php
-                $sql="SELECT ID, area_name FROM `service_areas` where is_valid=1 order by ID asc";
-
-                $result= generateSelectFromSql($sql,$local_servername,$local_username,$local_password,$local_db);
-
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                    echo "<option value='".$row["ID"]."'>".$row["area_name"]."</option>\n";
-                    }
-                } else {
-                    echo "0 results";
-                }
-
-                ?>
-            </select>
+            <?php serviceAreas("catering-service_area",$servername,$username,$password,$dbname);?>
             <label>Food tag 1</label>
             <select name="catering-food1" id="catering-food1"  class="form-select" >
             <?php
-            $sql="SELECT ID,type FROM `catering_foods`  order by type asc";
+            $sql="SELECT ID,type FROM `catering_foods` where is_valid=1 order by type asc";
 
-            $result= generateSelectFromSql($sql,$local_servername,$local_username,$local_password,$local_db);
+            $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
 
             if ($result->num_rows > 0) {
                 // output data of each row
@@ -289,7 +410,7 @@ function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
 
             $sql="SELECT ID,type FROM `catering_foods`  order by type asc";
 
-            $result= generateSelectFromSql($sql,$local_servername,$local_username,$local_password,$local_db);
+            $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
 
             if ($result->num_rows > 0) {
                 // output data of each row
@@ -310,7 +431,7 @@ function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
 
             $sql="SELECT ID,type FROM `catering_foods`  order by type asc";
 
-            $result= generateSelectFromSql($sql,$local_servername,$local_username,$local_password,$local_db);
+            $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
 
             if ($result->num_rows > 0) {
                 // output data of each row
@@ -356,22 +477,23 @@ function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
             <label>Email</label>
             <input id="transport-email"  name="transport-email" type="email" required>
 
+            <label >Web Site</label>
+            <input id="transport-web"  name="transport-web" type="url"  >
+
             <label>Phone Number</label>
             <input id="transport-phone" name="transport-phone" type="tel" required>
 
             <label>Address</label>
-            <input id="transport-location"  name="transport-location" type="text" required>
-			
-			<label>City</label>
-            <input id="transport-city" name="transport-city"  type="text" required>
-			
-			<label>Postal Code</label>
-            <input id="transport-postalCode" name="transport-postalCode"  type="text" 
-			pattern="^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$" required>
-			
-			<label>Website link</label>
-            <input id="transport-website" name="transport-website"  type="text" 
-			pattern="^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w.-]*)*\/?$  " required>
+            <input id="transport-address" name="transport-address"  type="text" required>
+            
+            <label>City</label>
+            <?php citiesSelect("transport-city"); ?><!--                                                            -->
+
+            <label>Postal Code</label>
+            <input id="transport-postal_code" name="transport-postal_code"  type="text" required>
+
+            <label >Area of Operation</label>
+            <?php serviceAreas("transport-service_area",$servername,$username,$password,$dbname);?>
 
             <label>Vehicle Capacity</label>
             <input id="transport-capacity" name="transport-capacity" type="number" min=0 required>
@@ -388,11 +510,11 @@ function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
 			</div>
 		</div>
 		
-		<label class="full-width">Description</label>
-        <textarea id="transport-desc" name="transport-desc" class="full-width" required></textarea>
+            <label class="full-width">Description</label>
+            <textarea id="transport-desc" name="transport-desc" class="full-width" required></textarea>
 
-		<label class="full-width">Logo</label>
-        <input id="transport-logo" nombre="transport-logo" type="url" class="full-width" accept="image/*" placeholder="Paste img URL here" >
+            <label class="full-width">Logo</label>
+            <input id="transport-logo" name="transport-logo" type="url" class="full-width" accept="image/*" placeholder="Paste img URL here" >
 
             <label class="full-width">Gallery</label>
             <input id="transport-pic1" name="transport-pic1" type="url" class="full-width" accept="image/*" placeholder="Paste img URL here" >
@@ -418,36 +540,30 @@ function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
             <input id="accomodation-name"  name="accomodation-name" type="text" required>
 
             <label>Email</label>
-            <input id="accomodation-email"  name`="accomodation-email" type="email" required>
+            <input id="accomodation-email"  name="accomodation-email" type="email" required>
 
             <label>Phone Number</label>
             <input id="accomodation-phone"  name="accomodation-phone" type="tel" required>
 
+            <label>Web Site</label>
+            <input id="accomodation-web"  name="accomodation-web" type="url" required>
+
             <label>Address</label>
             <input id="accomodation-address"  name="accomodation-address" type="text" required>
-			
-			<label>City</label>
-            <input id="accomodation-city" name="accomodation-city"  type="text" required>
-			
-			<label>Postal Code</label>
-            <input id="accomodation-postalCode" name="accomodation-postalCode"  type="text" 
-			pattern="^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$" required>
-			
-			<label>Website link</label>
-            <input id="accomodation-website" name="accomodation-website"  type="text" 
-			pattern="^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w.-]*)*\/?$  " required>
+
+            <label>City</label>
+            <?php citiesSelect("accomodation-city"); ?><!--                                                            -->
+            <label>Postal Code</label>
+            <input id="accomodation-postal_code"  name="accomodation-postal_code" type="text" required>
 
             <label>Number of Rooms</label>
             <input id="accomodation-rooms"  name="accomodation-rooms" type="number" min=0 required>
-			<!--
-			<label>Maximum capacity</label>
-            <input id="venue-capacity" type="number" min=0 required>
-            -->
-		<label class="full-width">Description</label>
-        <textarea id="accomodation-desc" name="accomodation-desc" class="full-width" required></textarea>
 
-		<label class="full-width">Logo</label>
-        <input id="accomodation-logo"  name="accomodation-logo" type="url" class="full-width" accept="image/*" placeholder="Paste img URL here" >
+            <label class="full-width">Description</label>
+            <textarea id="accomodation-desc" name="accomodation-desc" class="full-width" required></textarea>
+
+            <label class="full-width">Logo</label>
+            <input id="accomodation-logo"  name="accomodation-logo" type="url" class="full-width" accept="image/*" placeholder="Paste img URL here" >
 
             <label class="full-width">Gallery</label>
             <input id="accomodation-pic1"  name="accomodation-pic1" type="url" class="full-width" accept="image/*" placeholder="Paste img URL here" >
@@ -465,3 +581,37 @@ function generateSelectFromSql($sql,$servernamem,$username,$password,$db){
 
 </body>
 </html>
+<?php
+function  citiesSelect($name){
+    ?>
+                <select name="<?php echo $name; ?>" id="<?php echo $name; ?>"  class="form-select" >
+                    <option value="Kelowna, B.C.">Kelowna, B.C.</option>
+                    <option value="Oliver, B.C.">Oliver, B.C.</option>
+                    <option value="Osoyoos, B.C.">Osoyoos, B.C.</option>
+                    <option value="Penticton, B.C.">Penticton, B.C.</option>
+                    <option value="Vernon, B.C.">Vernon, B.C.</option>
+                    <option value="West Kelowna, B.C.">West Kelowna, B.C.</option>
+                    <option value="Summerland, B.C.">Summerland, B.C.</option>
+                </select>
+    <?php
+    }
+
+function serviceAreas ($name,$servername,$username,$password,$dbname){
+?>
+
+            <select name="<?php echo $name; ?>[]" id="<?php echo $name; ?>"  class="form-select" multiple="multiple">
+                <?php
+                $sql="SELECT ID, area_name FROM `service_areas` where is_valid=1 order by ID asc";
+                $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                    echo "<option value='".$row["ID"]."'>".$row["area_name"]."</option>\n";
+                    }
+                } else {
+                    echo "0 results";
+                }
+                ?>
+            </select>
+            <?php
+}?>

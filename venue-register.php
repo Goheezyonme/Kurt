@@ -1,15 +1,12 @@
 <?php
-
-
-$local_servername = "localhost";
-$local_username = "root";
-$local_password = "mysql";
+include 'connection-php.php';
 
 $venue="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //print_r($_POST);
+    //echo "<br>";
 
     $venue_name = htmlspecialchars($_POST['venue-name']);
     if (empty($venue_name)) {
@@ -53,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo $venue_website."\n";
     }*/
 	
-	$venue_postalCode = htmlspecialchars($_POST['venue-postalCode']);
+	$venue_postalCode = htmlspecialchars($_POST['venue-postal_code']);
     if (empty($venue_postalCode)) {
     echo "venue_postalCode is empty";
     } /*else {
@@ -142,26 +139,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     " `parking_available`,`review_stars`,`review_desc`) ".
     "VALUES ".
     "('".$venue_name."','".$venue_logo."',".
-    "'".$venue_address."',".
-    "'".$venue_city."','".$venue_postalCode."',".
-    "'".$venue_phone."',".
-    "'".$venue_email."','".$venue_website."',".
-    "'".$venue_pic1."','".$venue_pic2."',".
-    "'".$venue_pic3."','".$venue_desc."','".$venue_capacity."','".(($liquor_license == 'yes') ? 1 : 0)."',".
-    "'".(($kitchen == 'yes') ? 1 : 0)."','".$venue_bathrooms."','".$venue_parking."',0,'')";
+    "'".$venue_address."', '".$venue_city."','".$venue_postalCode."',".
+    "'".$venue_phone."', '".$venue_email."','".$venue_website."', '".$venue_pic1."',".
+    "'".$venue_pic2."','".$venue_pic3."','".$venue_desc."',".
+    "'".$venue_capacity."',".
+    "'".(($liquor_license == 'yes') ? 1 : 0)."', '".(($kitchen == 'yes') ? 1 : 0)."','".$venue_bathrooms."',".
+    "'".$venue_parking."',0,'')";
 
     
-    //echo $sql;
+    //echo "<br>".$sql;
+    //die();
 
-
-
- 
-    $servername = $local_servername;
-    $username = $local_username;
-    $password = $local_password;
     
     // Create connection
-    $conn = new mysqli($servername, $username, $password,'isotalent');
+    $conn = new mysqli($servername, $username, $password,$dbname);
     
     // Check connection
     if ($conn->connect_error) {
@@ -177,5 +168,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <script type="text/javascript">
 alert("Venue '<?php echo $venue; ?>' created.");
-window.location.href = "registration-HTML.html";
+window.location.href = "registration-PHP.php";
 </script>
