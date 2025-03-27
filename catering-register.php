@@ -1,9 +1,5 @@
 <?php
-
-
-$local_servername = "localhost";
-$local_username = "root";
-$local_password = "mysql";
+include 'connection-php.php';
 
 $catering="";
 
@@ -46,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } /*else {
     echo $catering_pic3."\n";
     }*/
+
     $catering_desc = htmlspecialchars($_POST['catering-desc']);
     if (empty($catering_desc)) {
     echo "catering_desc is empty";
@@ -66,8 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } /*else {
     echo $catering_address."\n";
     }*/
-
-
 
     $catering_city = htmlspecialchars($_POST['catering-city']);
     if (empty($catering_city)) {
@@ -150,13 +145,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //die();
 
     
- 
-    $servername = $local_servername;
-    $username = $local_username;
-    $password = $local_password;
-    
-    // Create connection
-    $conn = new mysqli($servername, $username, $password,'isotalent');
+     // Create connection
+    $conn = new mysqli($servername, $username, $password,$dbname);
     
     // Check connection
     if ($conn->connect_error) {
@@ -165,17 +155,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //echo $sql."<br>";
     $result = $conn->query($sql);
+    //we obtain the last id
     $last_id = $conn->insert_id;
+    //echo "<br>".$last_id."<br>\n";
 
     $insert_sql="INSERT INTO `catering_area`(`id_catering`, `id_area`) VALUES ";
-    //tenemos el ultimo id
-    //echo "<br>".$last_id."<br>\n";
-    //iteramos con arreglo de areas para componer sql
+
+
+    //iterate with array of areas to write the sql
     foreach($catering_service_area as $x => $y){
-      //echo "x=".$x."/y=".$y;
-      //echo "y=".$y."<br>";
       $insert_sql.="('".$last_id."','".$y."'),";
     }
+
     $insert_sql=ltrim($insert_sql );
     $insert_sql=substr($insert_sql,0,strlen($insert_sql)-1);
     $insert_sql.=";";
