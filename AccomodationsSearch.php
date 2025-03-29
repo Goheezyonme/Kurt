@@ -13,7 +13,7 @@ $is_logged_in = isset($_SESSION["user_id"]);
     <title>ISO Talent | Discover Premium Event Venues</title>
     <link rel="stylesheet" href="searchPage-CSS.css">
     <script src="search-script.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -38,47 +38,38 @@ $is_logged_in = isset($_SESSION["user_id"]);
             </div>
         </div>
     </nav>
-
-    <header class="hero-catering">
+	
+	<header class="hero-accomodations">
         <div class="overlay"></div>
         <div class="hero-content">
-            <h1>Explore caterers</h1>
-            <p style="font-family:Montserrat">Find the perfect catering service for your special moments!</p>
+            <h1>Find a place to stay!</h1>
+            <p style="font-family:Montserrat">Search for a temporary home!</p>
         </div>
     </header>
-
-    <div class="nav-links">
-        <a href="category-select-HTML.php" class="cta-button"><< Categories</a>
+	
+	<div class="nav-links">
+        <a href="category-select-HTML.html" class="cta-button"><< Categories</a>
     </div>
 
-    <div class="tags">
-        <h2 style="color: #15BDA1; font-family:Montserrat">Catering options</h2>
-        <button class="tag">Bar Services</button>
-        <button class="tag">BBQs & Picnics</button>
-        <button class="tag">Birthdays</button>
-        <button class="tag">Buffets</button>
-        <button class="tag">Casual Catering</button>
-        <br><br>
-        <button class="tag">Cocktail Parties</button>
-        <button class="tag">Corporate Events</button>
-        <button class="tag">Dessert Specialties</button>
-        <button class="tag">Dietary Restrictions</button>
-        <br><br>
-        <button class="tag">Formal Catering</button>
-        <button class="tag">Funerals & Memorials</button>
-        <button class="tag">Holiday Celebrations</button>
-        <button class="tag">Plated Meals</button>
-        <button class="tag">Private Parties</button>
-        <br><br>
-        <button class="tag">Religious Events</button>
-        <button class="tag">Street Food</button>
-        <button class="tag">Weddings</button>
-        <br><br>
-        <button class="button" id="search">Search</button>
+
+ <div class="tags">
+	<h2 style="color: #15BDA1; font-family:Montserrat">Accomodations</h2>
+        <button class="tag">Hotels</button>
+        <button class="tag">Motels</button>
+        <button class="tag">BNB</button>
+        <button class="tag">Vacation Rentals</button>
+        <button class="tag">Townhomes</button>
+        <button class="tag">Guesthouses</button>
+		<br><br>
+        <button class="tag">Serviced apartments</button>
+		<br><br>
+		<button class="button" id="search">Search</button>
+
+	
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
+	<footer class="footer">
         <p>&copy; 2025 Interior South Okanagan Talent. All rights reserved.</p>
     </footer>
 

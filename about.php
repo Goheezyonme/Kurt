@@ -22,16 +22,17 @@ $is_logged_in = isset($_SESSION["user_id"]);
         <div class="container">
             <div class="nav-links">
                 <a href="Landing page.html" class="logo">Home</a>
-                <a href="about-HTML.html">About Us</a>
+                <a href="about.php">About Us</a>
                 <?php if ($is_logged_in): ?>
-                    <a href="registration-HTML.html" class="cta-button">Promote Yourself</a>
+                    <a href="registration-PHP.php" class="cta-button">Promote Yourself</a>
                 <?php endif; ?>
-                <a href="category-select-HTML.php">Search</a>
+                <a href="category-select-PHP.php">Search</a>
 
                 <?php if ($is_logged_in): ?>
                     <span class="user-welcome">Welcome, <?php echo htmlspecialchars($_SESSION["email"]); ?>!</span>
                     <a href="logout.php" class="cta-button">Log Out</a>
                 <?php else: ?>
+					<br>
                     <span class="user-welcome">You are browsing as a guest. <a href="signin.html">Sign in</a> for more features!</span>
                 <?php endif; ?>
             </div>
