@@ -16,6 +16,11 @@ body, html {
             flex-direction: column;
         }
 		
+h2{
+	color: #15BDA1;
+	font-family:Monterrat;
+	text-align: center;
+}
 .tags{
 	margin-top: 20px;
 	flex: 1;
@@ -179,7 +184,8 @@ nav, header, section, footer {
 }
 
 .hero-content p{
-	color: #15BDA1
+	color: #15BDA1;
+	font-family: Montserrat;
 }
 
 .cta-button{
@@ -188,4 +194,56 @@ nav, header, section, footer {
 
 #search{
 	font-family:Montserrat;
+}
+
+/*css for the form layout */
+.search-form {
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    height: 100vh;
+}
+
+.search-form label {
+    font-weight: 600;
+    color: #444;
+    display: block;
+	font-family:Montserrat;
+	margin-top:15px;
+}
+
+
+.search-form input,
+.search-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-form textarea {
+    resize: none;
+    height: 100px;
+    grid-column: span 2;
+}
+
+.search-form button{
+	margin-top: 30px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 10px; 
+    align-items: center; 
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+}
+
+.radio-item label {
+    margin: 0;
+    display: inline-block;
 }

@@ -1,8 +1,25 @@
 <?php
+include 'connection-php.php';
+
+function generateSelectFromSql($sql,$servername,$username,$password,$db){
+    // Create connection
+    $conn = new mysqli($servername, $username, $password,$db);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    //echo $sql."<br>";
+    $result = $conn->query($sql);
+    $conn->close();
+    return $result;
+}
 session_start();
+
+// Check if the user is logged in
 $is_logged_in = isset($_SESSION["user_id"]);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +59,7 @@ $is_logged_in = isset($_SESSION["user_id"]);
         <div class="overlay"></div>
         <div class="hero-content">
             <h1>Find a way to get around!</h1>
-            <p style="font-family:Montserrat">Search for your preferred means of transportation around the beautiful Okanagan!</p>
+            <p>Search for your preferred means of transportation around the beautiful Okanagan!</p>
         </div>
     </header>
 
@@ -50,18 +67,34 @@ $is_logged_in = isset($_SESSION["user_id"]);
         <a href="category-select-PHP.php" class="cta-button"><< Categories</a>
     </div>
 
-    <div class="tags">
-        <h2 style="color: #15BDA1; font-family:Montserrat">Transportation Types</h2>
-        <button class="tag">Naramata Taxi</button>
-        <button class="tag">Other Taxi Services</button>
-        <button class="tag">Chauffer Services</button>
-        <button class="tag">Ride Sharing Services</button>
-        <button class="tag">Car Rental</button>
-        <br><br>
-        <button class="tag">Rental buses</button>
-        <br><br>
-        <button class="button" id="search">Search</button>
-    </div>
+	<h2>Search Transportation</h2>
+	<div class="search-form">
+	<form class="registration-form" action="transportation-register.php" method="post">
+            
+            <label>City</label>
+            <?php citiesSelect("transport-city"); ?><!--                                                            -->
+
+            <label >Area of Operation</label>
+            <?php serviceAreas("transport-service_area",$servername,$username,$password,$dbname);?>
+
+            <label>Vehicle Capacity</label>
+            <input id="transport-capacity" name="transport-capacity" type="number" min=0 required>
+			
+			<label>Wheelchair Accessible?</label>
+			<div class="radio-group">
+				<div class="radio-item">
+					<input type="radio" id="wheelchair-yes" name="wheelchair-access" value="yes" required>
+					<label for="wheelchair-yes" style="margin: 0;">Yes</label>
+				</div>
+			<div class="radio-item">
+				<input type="radio" id="wheelchair-no" name="wheelchair-access" value="no" required>
+				<label for="wheelchair-no" style="margin: 0;">No</label>
+			</div>
+		</div>
+		
+            <button id="transport-submit" type="submit" class="btn full-width">Submit</button>
+        </form>
+		</div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -70,3 +103,37 @@ $is_logged_in = isset($_SESSION["user_id"]);
 
 </body>
 </html>
+<?php
+function  citiesSelect($name){
+    ?>
+                <select name="<?php echo $name; ?>" id="<?php echo $name; ?>"  class="form-select" >
+                    <option value="Kelowna, B.C.">Kelowna, B.C.</option>
+                    <option value="Oliver, B.C.">Oliver, B.C.</option>
+                    <option value="Osoyoos, B.C.">Osoyoos, B.C.</option>
+                    <option value="Penticton, B.C.">Penticton, B.C.</option>
+                    <option value="Vernon, B.C.">Vernon, B.C.</option>
+                    <option value="West Kelowna, B.C.">West Kelowna, B.C.</option>
+                    <option value="Summerland, B.C.">Summerland, B.C.</option>
+                </select>
+    <?php
+    }
+
+function serviceAreas ($name,$servername,$username,$password,$dbname){
+?>
+
+            <select name="<?php echo $name; ?>[]" id="<?php echo $name; ?>"  class="form-select" multiple="multiple">
+                <?php
+                $sql="SELECT ID, area_name FROM `service_areas` where is_valid=1 order by ID asc";
+                $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                    echo "<option value='".$row["ID"]."'>".$row["area_name"]."</option>\n";
+                    }
+                } else {
+                    echo "0 results";
+                }
+                ?>
+            </select>
+            <?php
+}?>
