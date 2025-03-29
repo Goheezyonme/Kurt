@@ -299,7 +299,7 @@ $is_logged_in = isset($_SESSION["user_id"]);
             <label>Food tag 1</label>
             <select name="foodtruck-food1" id="foodtruck-food1"  class="form-select" >
             <?php
-            $sql="SELECT ID,type FROM `foodtruck_foods` where is_valid=1 order by type asc";
+            $sql="SELECT ID,type FROM `foodtruck_foods` order by type asc";
 
             $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
 
