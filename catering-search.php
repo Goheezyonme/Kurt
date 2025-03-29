@@ -29,6 +29,7 @@ $is_logged_in = isset($_SESSION["user_id"]);
                 <a href="category-select-PHP.php">Search</a>
 
                 <?php if ($is_logged_in): ?>
+					<br>
                     <span class="user-welcome">Welcome, <?php echo htmlspecialchars($_SESSION["email"]); ?>!</span>
                     <a href="logout.php" class="cta-button">Log Out</a>
                 <?php else: ?>
@@ -48,7 +49,7 @@ $is_logged_in = isset($_SESSION["user_id"]);
     </header>
 
     <div class="nav-links">
-        <a href="category-select-HTML.php" class="cta-button"><< Categories</a>
+        <a href="category-select-PHP.php" class="cta-button"><< Categories</a>
     </div>
 
     <div class="tags">
