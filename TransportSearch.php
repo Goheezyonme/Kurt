@@ -69,7 +69,7 @@ $is_logged_in = isset($_SESSION["user_id"]);
 
 	<h2>Search Transportation</h2>
 	<div class="search-form">
-	<form class="registration-form" action="transportation-register.php" method="post">
+	<form class="registration-form" action="TransportationSearchResults.php" method="post">
             
             <label>City</label>
             <?php citiesSelect("transport-city"); ?><!--                                                            -->
