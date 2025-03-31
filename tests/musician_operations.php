@@ -5,8 +5,8 @@ if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-function getVenueCount($mysqli) {
-    $result = $mysqli->query("SELECT COUNT(*) AS count FROM musicians");
+function getMusicianCount($mysqli) {
+    $result = $mysqli->query("SELECT COUNT(*) AS count FROM musicians_test");
     $row = $result->fetch_assoc();
     return $row['count'];
 }

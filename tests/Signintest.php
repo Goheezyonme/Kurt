@@ -1,4 +1,4 @@
-<?php
+<?
 use PHPUnit\Framework\TestCase;
 require 'signin.php';
 
@@ -17,6 +17,22 @@ class SigninTest extends TestCase {
         ");
     }
 
+    // Make signInUser a method of the class
+    private function signInUser($mysqli, $email, $password) {
+        $sql = "SELECT * FROM users WHERE email = ?";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 1) {
+            $user = $result->fetch_assoc();
+            return password_verify($password, $user['password']);
+        }
+
+        return false;
+    }
+
     protected function tearDown(): void {
         $this->mysqli->query("DROP TABLE IF EXISTS users");
         $this->mysqli->close();
@@ -30,7 +46,8 @@ class SigninTest extends TestCase {
             VALUES ('Test User', '$email', '$password')
         ");
 
-        $result = signInUser($this->mysqli, $email, "securepassword123");
+        // Call the method using $this
+        $result = $this->signInUser($this->mysqli, $email, "securepassword123");
         $this->assertTrue($result);
     }
 
@@ -42,12 +59,14 @@ class SigninTest extends TestCase {
             VALUES ('Test User', '$email', '$password')
         ");
 
-        $result = signInUser($this->mysqli, $email, "wrongpassword");
+        // Call the method using $this
+        $result = $this->signInUser($this->mysqli, $email, "wrongpassword");
         $this->assertFalse($result);
     }
 
     public function testSignInNonExistentUser(): void {
-        $result = signInUser($this->mysqli, "nonexistent@example.com", "password123");
+        // Call the method using $this
+        $result = $this->signInUser($this->mysqli, "nonexistent@example.com", "password123");
         $this->assertFalse($result);
     }
 }

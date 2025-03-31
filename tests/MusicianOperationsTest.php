@@ -10,7 +10,7 @@ class MusicianOperationsTest extends TestCase {
 
         // Create a temporary musicians table for testing
         $this->mysqli->query("
-            CREATE TEMPORARY TABLE musicians (
+            CREATE TEMPORARY TABLE musicians_test (
 			  `ID` int NOT NULL,
 			  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
 			  `logo` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
@@ -36,21 +36,21 @@ class MusicianOperationsTest extends TestCase {
 
     protected function tearDown(): void {
         // Drop the temporary table after testing
-        $this->mysqli->query("DROP TABLE IF EXISTS musicians");
+        $this->mysqli->query("DROP TABLE IF EXISTS musicians_test");
         $this->mysqli->close();
     }
 
     public function testInsertMusician(): void {
         // Insert test data into the temporary table
         $this->mysqli->query("
-            INSERT INTO `musicians`( 
-				`name`, `logo`, `address`, 
+            INSERT INTO `musicians_test`( 
+				`ID`, `name`, `logo`, `address`, 
 				`city`, `postal_code`, `email`, 
 				`photo1`, `photo2`, `photo3`, 
 				`description`, `genre1`, `genre2`,
 				`genre3`, `review_stars`, `review_desc`) 
 			 VALUES (
-				 'Test Musician','http://example.com/logo.png','123 Test St',
+				 '1', 'Test Musician','http://example.com/logo.png','123 Test St',
 				 'Kelowna, B.C.','V1Y 7C7','test@example.com',
 				 'http://example.com/pic1.png','http://example.com/pic2.png','http://example.com/pic3.png',
 				 'A test Musician description.','1','2',
