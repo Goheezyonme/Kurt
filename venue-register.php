@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $venue=$venue_name;
 
-    $sql="INSERT INTO `venues`".
+    $sql="INSERT INTO `venues`".   /*create the sql statement and declare the values */
     "( `name`, `logo`,".
     " `address`, `city`, `postal_code`,".
     " `phone`, `email`, `web`, `photo1`,".
@@ -138,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     " `liquor_license`, `kitchen_available`, `bathrooms_available`,".
     " `parking_available`,`review_stars`,`review_desc`) ".
     "VALUES ".
-    "('".$venue_name."','".$venue_logo."',".
+    "('".$venue_name."','".$venue_logo."',".   /* declare what values will go into each field */
     "'".$venue_address."', '".$venue_city."','".$venue_postalCode."',".
     "'".$venue_phone."', '".$venue_email."','".$venue_website."', '".$venue_pic1."',".
     "'".$venue_pic2."','".$venue_pic3."','".$venue_desc."',".
