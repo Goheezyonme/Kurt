@@ -51,23 +51,20 @@ $is_logged_in = isset($_SESSION["user_id"]);
 	<div class="nav-links">
         <a href="category-select-PHP.php" class="cta-button"><< Categories</a>
     </div>
+	<h2>Search Accommodations</h2>
 
+	<div class="search-form">
+	<form class="registration-form" action="AccomodationSearchResults.php" method="post">
 
- <div class="tags">
-	<h2 style="color: #15BDA1; font-family:Montserrat">Accomodations</h2>
-        <button class="tag">Hotels</button>
-        <button class="tag">Motels</button>
-        <button class="tag">BNB</button>
-        <button class="tag">Vacation Rentals</button>
-        <button class="tag">Townhomes</button>
-        <button class="tag">Guesthouses</button>
-		<br><br>
-        <button class="tag">Serviced apartments</button>
-		<br><br>
-		<button class="button" id="search">Search</button>
+            <label>City</label>
+            <?php citiesSelect("accomodation-city"); ?>                                        
 
-	
-    </div>
+            <label>Number of Rooms</label>
+            <input id="accomodation-rooms"  name="accomodation-rooms" type="number" min=0 required>
+
+            <button id="accomodation-submit" type="submit" class="btn full-width">Submit</button>
+        </form>
+	</div>
 
     <!-- Footer -->
 	<footer class="footer">
@@ -76,3 +73,19 @@ $is_logged_in = isset($_SESSION["user_id"]);
 
 </body>
 </html>
+
+<?php
+function  citiesSelect($name){
+    ?>
+                <select name="<?php echo $name; ?>" id="<?php echo $name; ?>"  class="form-select" >
+                    <option value="Kelowna, B.C.">Kelowna, B.C.</option>
+                    <option value="Oliver, B.C.">Oliver, B.C.</option>
+                    <option value="Osoyoos, B.C.">Osoyoos, B.C.</option>
+                    <option value="Penticton, B.C.">Penticton, B.C.</option>
+                    <option value="Vernon, B.C.">Vernon, B.C.</option>
+                    <option value="West Kelowna, B.C.">West Kelowna, B.C.</option>
+                    <option value="Summerland, B.C.">Summerland, B.C.</option>
+                </select>
+    <?php
+    }
+?>
