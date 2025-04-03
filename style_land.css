@@ -57,6 +57,13 @@ body {
     margin-bottom: 15px;
 }
 
+/* Logo Image Styling */
+.logo-img {
+    width: 500px; /* Adjust the width of the logo */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Space between the logo and the description */
+}
+
 
 /* Description */
 .description {
@@ -71,7 +78,6 @@ body {
     color: #15bda1; /* Dark Green */
     font-weight: bold;
     font-size: 1.2rem;
-	font-family:Montserrat;
     margin: 20px 0;
     padding: 10px;
     border-radius: 5px;
@@ -92,7 +98,6 @@ body {
     font-weight: bold;
     text-decoration: none;
     font-size: 1rem;
-	font-family:Montserrat;
     text-align: center;
     transition: background-color 0.3s ease;
     color: white;
@@ -106,7 +111,6 @@ body {
 /* Alternate Button */
 .btn-alt {
     background: #0799bb;
-	font-family:Montserrat;
 }
 
 .btn-alt:hover {
