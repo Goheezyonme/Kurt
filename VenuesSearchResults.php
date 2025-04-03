@@ -117,6 +117,9 @@ $is_logged_in = isset($_SESSION["user_id"]);
             </div>
         </div>
     </nav>
+	<div class="nav-links">
+        <a href="VenuesSearch.php" class="cta-button" style="font-family: Monsterrat"><< Search Again</a>
+    </div>
     <h1 style="text-align: center; font-family:Monterrat;">Results</h1>
             <?php
             // Check if results exist

@@ -73,13 +73,13 @@ $is_logged_in = isset($_SESSION["user_id"]);
 			<label style="margin:0">City</label>
             <?php citiesSelect("venue-city"); ?>
             
-            <label>Number of Bathrooms</label>
+            <label>Minimum Number of Bathrooms</label>
             <input id="venue-bathrooms" name="venue-bathrooms"  type="number" min=0 required>
 			
 			<label>Maximum capacity</label>
             <input id="venue-capacity" name="venue-capacity"  type="number" min=0 required>
 			
-			<label>Parking spots</label>
+			<label>Minimum Number of Parking spots</label>
             <input id="venue-parking" name="venue-parking"  type="number" min=0 required>
 			
 			<label>Liquor License?</label>

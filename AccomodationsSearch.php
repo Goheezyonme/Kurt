@@ -59,7 +59,7 @@ $is_logged_in = isset($_SESSION["user_id"]);
             <label>City</label>
             <?php citiesSelect("accomodation-city"); ?>                                        
 
-            <label>Number of Rooms</label>
+            <label>Minimum Number of Rooms</label>
             <input id="accomodation-rooms"  name="accomodation-rooms" type="number" min=0 required>
 
             <button id="accomodation-submit" type="submit" class="btn full-width">Submit</button>
