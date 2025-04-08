@@ -54,8 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	"bathrooms_available >= '". $venue_bathrooms . "' AND ".
 	"maximum_capacity >= '". $venue_capacity . "' AND ".
 	"parking_available >= '". $venue_parking . "' AND ".
-	"liquor_license = ". (($liquor_license == 'yes') ? 1 : 0). " AND ".
-	"kitchen_available = ". (($kitchen == 'yes') ? 1 : 0). ";";
+	"(liquor_license = ". (($liquor_license == 'yes') ? 1 : 0). " OR liquor_license = 1) AND ".
+	"(kitchen_available = ". (($kitchen == 'yes') ? 1 : 0). " OR kitchen_available = 1) AND ".
+	"is_valid = 1;";
 
     
     //echo "<br>".$sql;
@@ -127,11 +128,20 @@ $is_logged_in = isset($_SESSION["user_id"]);
                 // Output data of each row
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='result'>";
-                    echo "<h2>" . $row["name"] . "</h2>";
+                    echo "<h1>" . $row["name"] . "</h1>";
+					echo "<h3>Address: ". $row["address"]. "</h3>";
+					echo "<h3>Bathrooms Available: ". $row["bathrooms_available"]. "</h3>";
+					echo "<h3>Parking Available: ". $row["parking_available"]. "</h3>";
+					echo "<h3>Available Kitchen? ". (($row["kitchen_available"] == 1) ? "Yes" : "No");
+					echo "<h3>Liquor License? ". (($row["liquor_license"] == 1) ? "Yes" : "No");
+					echo "<h3>Phone: ". $row["phone"]. "</h3>";
+					echo "<h3>Email: ". $row["email"]. "</h3>";
+					echo "<h3>Website: <a href='". $row["web"]. "'>". $row["web"]. "</a></h3>";
+					echo "<p> ". $row["description"]. "</p>";
                     echo "</div>";
                 }
             } else {
-                echo "<tr><td colspan='4'>No results found</td></tr>";
+                echo "<h3 style='text-align: center'>No Results found</h3>";
             }
             ?>
     <!-- Footer -->

@@ -71,11 +71,11 @@ $is_logged_in = isset($_SESSION["user_id"]);
 	<div class="search-form">
 	<form class="registration-form" action="TransportationSearchResults.php" method="post">
             
-            <label>City</label>
-            <?php citiesSelect("transport-city"); ?><!--                                                            -->
+            <label>Pickup Location</label>
+            <?php citiesSelect("transport-pickup",$servername, $username, $password, $dbname); ?><!--                                                            -->
 
-            <label >Area of Operation</label>
-            <?php serviceAreas("transport-service_area",$servername,$username,$password,$dbname);?>
+			<label>Dropoff Location</label>
+            <?php citiesSelect("transport-dropoff", $servername, $username, $password, $dbname); ?>
 
             <label>Vehicle Capacity</label>
             <input id="transport-capacity" name="transport-capacity" type="number" min=0 required>
@@ -104,36 +104,36 @@ $is_logged_in = isset($_SESSION["user_id"]);
 </body>
 </html>
 <?php
-function  citiesSelect($name){
+function citiesSelect($name, $servername, $username, $password, $dbname) {
     ?>
-                <select name="<?php echo $name; ?>" id="<?php echo $name; ?>"  class="form-select" >
-                    <option value="Kelowna, B.C.">Kelowna, B.C.</option>
-                    <option value="Oliver, B.C.">Oliver, B.C.</option>
-                    <option value="Osoyoos, B.C.">Osoyoos, B.C.</option>
-                    <option value="Penticton, B.C.">Penticton, B.C.</option>
-                    <option value="Vernon, B.C.">Vernon, B.C.</option>
-                    <option value="West Kelowna, B.C.">West Kelowna, B.C.</option>
-                    <option value="Summerland, B.C.">Summerland, B.C.</option>
-                </select>
-    <?php
-    }
+    <select name="<?php echo $name; ?>" id="<?php echo $name; ?>" class="form-select">
+        <?php
+        // Connect to the database
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
-function serviceAreas ($name,$servername,$username,$password,$dbname){
+        // Check the connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // Query to fetch all entries from the service_areas table
+        $sql = "SELECT area_name FROM `service_areas` WHERE is_valid = 1 ORDER BY ID ASC";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // Output each row as an option in the dropdown
+            while ($row = $result->fetch_assoc()) {
+                echo "<option value='" . htmlspecialchars($row["area_name"]) . "'>" . htmlspecialchars($row["area_name"]) . "</option>";
+            }
+        } else {
+            echo "<option disabled>No service areas available</option>";
+        }
+
+        // Close the database connection
+        $conn->close();
+        ?>
+    </select>
+    <?php
+}
 ?>
 
-            <select name="<?php echo $name; ?>[]" id="<?php echo $name; ?>"  class="form-select" multiple="multiple">
-                <?php
-                $sql="SELECT ID, area_name FROM `service_areas` where is_valid=1 order by ID asc";
-                $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                    echo "<option value='".$row["ID"]."'>".$row["area_name"]."</option>\n";
-                    }
-                } else {
-                    echo "0 results";
-                }
-                ?>
-            </select>
-            <?php
-}?>

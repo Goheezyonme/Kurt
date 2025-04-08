@@ -20,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql="SELECT * FROM `accommodations` WHERE ".
 	"city = '". $accomodation_city . "' AND ".
-	"num_rooms >= '". $accomodation_rooms. "';";
+	"num_rooms >= '". $accomodation_rooms. "' AND ".
+	"is_valid = 1;";
 
     
     //echo $sql;
@@ -83,7 +84,7 @@ $is_logged_in = isset($_SESSION["user_id"]);
         </div>
     </nav>
 	<div class="nav-links">
-        <a href="AccomodationsSearch.php" class="cta-button" style="font-family: Monsterrat"><< Categories</a>
+        <a href="AccomodationsSearch.php" class="cta-button" style="font-family: Monsterrat"><< Search Again</a>
     </div>
     <h1 style="text-align: center; font-family:Monterrat;">Results</h1>
             <?php
@@ -92,11 +93,17 @@ $is_logged_in = isset($_SESSION["user_id"]);
                 // Output data of each row
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='result'>";
-                    echo "<h2>" . $row["name"] . "</h2>";
+                    echo "<h1>" . $row["name"] . "</h1>";
+					echo "<h3>Address: ". $row["address"]. "</h3>";
+					echo "<h3>Number of Rooms: ". $row["num_rooms"]. "</h3>";
+					echo "<h3>Phone: ". $row["phone"]. "</h3>";
+					echo "<h3>Email: ". $row["email"]. "</h3>";
+					echo "<h3>Website: <a href='". $row["web"]. "'>". $row["web"]. "</a></h3>";
+					echo "<p> ". $row["description"]. "</p>";
                     echo "</div>";
                 }
             } else {
-                echo "<tr><td colspan='4'>No results found</td></tr>";
+                echo "<h3 style='text-align: center'>No Results found</h3>";
             }
             ?>
     <!-- Footer -->

@@ -5,9 +5,16 @@ $transport="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
-	$transport_city = htmlspecialchars($_POST['transport-city']);
-    if (empty($transport_city)) {
-    echo "transport_city is empty";
+	$transport_pickup = htmlspecialchars($_POST['transport-pickup']);
+    if (empty($transport_pickup)) {
+    echo "transport_pickup is empty";
+    } /*else {
+    echo $transport_city."\n";
+    }*/
+	
+	$transport_dropoff = htmlspecialchars($_POST['transport-dropoff']);
+    if (empty($transport_dropoff)) {
+    echo "transport_dropoff is empty";
     } /*else {
     echo $transport_city."\n";
     }*/
@@ -26,26 +33,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } /*else {
     echo $wheelchair_access."\n";
     }*/
-    
-    $transport_service_area = $_POST['transport-service_area'];
-    if (empty($transport_service_area)) {
-    echo "transport_service_area is empty";
-    } /*else {
-    print_r( $transport_service_area);
-    }*/
 
-    $sql="INSERT INTO `transportations`".
-    " ( `name`, `logo`, `address`, ".
-    " `city`, `postal_code`, `phone`, ".
-    " `email`, `web`, `photo1`, `photo2`, ".
-    " `photo3`, `description`, `review_stars`, ".
-    " `review_desc`, `vehicle_capacities`, `wheel_chair_accessible_vehicles`) ".
-    " VALUES ".
-    " ('".$transport_name."','".$transport_logo."','".$transport_address."',".
-    " '".$transport_city."','".$transport_postalCode."', '".$transport_phone."',".
-    " '".$transport_email."','".$transport_website."',  '".$transport_pic1."','".$transport_pic2."',".
-    " '".$transport_pic3."','".$transport_desc."','0',".
-    " '','".$transport_capacity."','".(($wheelchair_access == 'yes') ? 1 : 0)."')";
+
+   $sql = "SELECT * " .
+    "FROM transportations tr " .
+    "JOIN transportation_area ta_pickup ON ta_pickup.id_transport = tr.ID " .
+    "JOIN service_areas sa_pickup ON sa_pickup.ID = ta_pickup.id_area " .
+    "JOIN transportation_area ta_dropoff ON ta_dropoff.id_transport = tr.ID " .
+    "JOIN service_areas sa_dropoff ON sa_dropoff.ID = ta_dropoff.id_area " .
+    "WHERE tr.vehicle_capacities >= '". $transport_capacity . "' AND " .
+    "(tr.wheel_chair_accessible_vehicles = '". $wheelchair_access . "' OR " .
+    "tr.wheel_chair_accessible_vehicles = 1) AND " .
+    "tr.is_valid = 1 AND " .
+    "sa_pickup.area_name = '". $transport_pickup . "' AND " .
+    "sa_dropoff.area_name = '". $transport_dropoff . "';";
+
+
+
 
     //echo "<br>".$sql."<br>";
     //die();
@@ -61,26 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //echo $sql."<br>";
     $result = $conn->query($sql);
-    //we obtain the last id
-    $last_id = $conn->insert_id;
-    //echo "<br>".$last_id."<br>\n";
-
-    $insert_sql="INSERT INTO `transportation_area`(`id_transport`, `id_area`) VALUES ";
-
-
-    //iterate with array of areas to write the sql
-    foreach($transport_service_area as $x => $y){
-      $insert_sql.="('".$last_id."','".$y."'),";
-    }
-
-    $insert_sql=ltrim($insert_sql );
-    $insert_sql=substr($insert_sql,0,strlen($insert_sql)-1);
-    $insert_sql.=";";
-    //echo $insert_sql."<br>";
-    //die();
-    $conn->query($insert_sql);
-
-    //insertamos en tabla intermedia
     $conn->close();
     
   }
@@ -125,6 +109,9 @@ $is_logged_in = isset($_SESSION["user_id"]);
             </div>
         </div>
     </nav>
+	<div class="nav-links">
+        <a href="TransportSearch.php" class="cta-button" style="font-family: Monsterrat"><< Search Again</a>
+    </div>
     <h1 style="text-align: center; font-family:Monterrat;">Results</h1>
             <?php
             // Check if results exist
@@ -132,11 +119,17 @@ $is_logged_in = isset($_SESSION["user_id"]);
                 // Output data of each row
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='result'>";
-                    echo "<h2>" . $row["name"] . "</h2>";
+                    echo "<h1>" . $row["name"] . "</h1>";
+					echo "<h3>Maximum capacity: ". $row["vehicle_capacities"]. "</h3>";
+					echo "<h3>Wheelchair Acess? ". (($row["wheel_chair_accessible_vehicles"] == 1) ? "Yes" : "No");
+					echo "<h3>Phone: ". $row["phone"]. "</h3>";
+					echo "<h3>Email: ". $row["email"]. "</h3>";
+					echo "<h3>Website: <a href='". $row["web"]. "'>". $row["web"]. "</a></h3>";
+					echo "<p> ". $row["description"]. "</p>";
                     echo "</div>";
                 }
             } else {
-                echo "<tr><td colspan='4'>No results found</td></tr>";
+                echo "<h3 style='text-align: center'>No Results found</h3>";
             }
             ?>
     <!-- Footer -->
