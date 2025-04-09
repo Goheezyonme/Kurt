@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Sign-Up</title>
+    <link rel="stylesheet" href="style_sign.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-links">
+                <a href="index.html" class="logo">Home</a>
+                <a href="entertainer.html" class="cta-button">Become an Entertainer</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="form-container">
+        <h1 class="form-title">Sign Up</h1>
+        <p class="form-description">Create a new account</p>
+
+        <form class="registration-form" action="signup.php" method="post">
+			<label>Full Name</label>
+			<input type="text" name="full_name" required>
+
+			<label>Email</label>
+			<input type="email" name="email" required>
+
+			<label>Password</label>
+			<input type="password" name="password" required>
+
+			<button type="submit" class="btn full-width">Sign Up</button>
+		</form>
+
+
+        <p class="center-text">Already have an account? <a href="signin.html">Sign in</a></p>
+		<p class="center-text">By signing up you agree to our <a href="Legal-Terms-HTML.html">Terms of use</a></p>
+    </div>
+
+    <footer class="footer">
+        © 2025 Interior South Okanagan Talent. All rights reserved.
+    </footer>
+
+</body>
+</html>
