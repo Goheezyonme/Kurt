@@ -1,0 +1,253 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+/* Reset Defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fec202; /* Updated background color */
+    color: #333;
+    margin: 0;
+    padding: 0;	
+}
+
+.navbar {
+    background-color: #0799BB;
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a{
+	font-family:Montserrat;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+}
+
+.logo {
+    font-size: 2rem;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+	margin-right: 700px;
+}
+
+
+.nav-links a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #15BDA1;
+}
+
+
+.footer {
+    background-color: #0799BB;
+    text-align: center;
+    padding: 1.5rem 0;
+    color: white;
+}
+
+/* Logo */
+.logo {
+    font-size: 2.5rem; /* Increased size */
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    margin-right: 700px;
+}
+
+.navbar .logo {
+    flex-grow: 1; /* Pushes other items to the side */
+    text-align: left; /* Ensures it's aligned properly */
+}
+
+
+/* CTA Button */
+.cta-button {
+    background-color: #0799bb;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.cta-button:hover {
+    background-color: #057a99;
+}
+
+/* Form Container */
+.form-container {
+    background: white;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+    text-align: center;
+    font-size: 28px;
+    color: #0799bb;
+    font-weight: 600;
+	font-family:Montserrat;
+}
+
+.form-description {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+	font-family:Montserrat;
+}
+
+/* Form Layout */
+.registration-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.registration-form label {
+    font-weight: 600;
+    color: #444;
+    display: block;
+    margin-bottom: 5px;
+	font-family:Montserrat;
+}
+
+.registration-form input,
+.registration-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.registration-form textarea {
+    resize: none;
+    height: 100px;
+    grid-column: span 2;
+}
+
+.radio-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.radio-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px; 
+}
+
+
+
+
+
+/* Checkboxes */
+.checkbox-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.checkbox-group input {
+    width: auto;
+}
+
+/* File Uploads */
+.file-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Full-width fields */
+.full-width {
+    grid-column: span 2;
+}
+
+/* Buttons */
+.btn {
+    background-color: #0799bb;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+	font-family:Montserrat;
+}
+
+.btn:hover {
+    background-color: #057a99;
+}
+
+/* dropdown menu stuff */
+        .dropdown {
+            margin: 40px;
+        }
+
+        .dropdown-bar {
+            background-color: #0799BB;
+            color: white;
+            padding: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+			font-family: Montserrat;
+        }
+		
+		.dropdown-bar:hover{ 
+			color: #15BDA1;
+			background: #067C95;
+		}
+
+        .dropdown-content {
+            display: none;
+			background: white;
+			max-width: 800px;
+			margin: 50px auto;
+			margin-top: 20px;
+			padding: 30px;
+			border-radius: 10px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .arrow {
+            transition: transform 0.3s;
+        }
+
+        .arrow-down {
+            transform: rotate(0deg);
+        }
+
+        .arrow-right {
+            transform: rotate(-90deg);
+        }
+
+        .show {
+            display: block;
+        }
+
+
