@@ -1,0 +1,154 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+/* Reset Defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fec202; /* Gold background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #0799BB;
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a{
+	font-family:Montserrat;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+}
+
+.logo {
+    font-size: 2rem;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+	margin-right: 700px;
+}
+
+.nav-links a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #15BDA1;
+}
+
+/* Logo */
+.logo {
+    font-size: 2.5rem;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    color: #fec202;
+    text-decoration: none;
+	margin-right: 620px;
+}
+
+/* CTA Button */
+.cta-button {
+    background-color: #0799bb;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.cta-button:hover {
+    background-color: #057a99;
+}
+
+/* Form Container */
+.form-container {
+    background: white;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.form-title {
+    font-size: 28px;
+    color: #0799bb;
+    font-weight: 600;
+}
+
+.form-description {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Form Layout */
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.registration-form label {
+    font-weight: 600;
+    color: #444;
+    text-align: left;
+}
+
+.registration-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Buttons */
+.btn {
+    background-color: #0799bb;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #057a99;
+}
+
+/* Centered text for Sign Up/Sign In links */
+.center-text {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Footer */
+.footer {
+    background-color: #0799BB;
+    text-align: center;
+    padding: 1.5rem 0;
+    color: white;
+	position: absolute;
+    bottom: 0%;
+	width: 100%
+}
