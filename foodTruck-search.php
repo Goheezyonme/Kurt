@@ -142,7 +142,7 @@ function citiesSelect($name, $servername, $username, $password, $dbname) {
         }
 
         // Query to fetch all entries from the service_areas table
-        $sql = "SELECT area_name FROM `service_areas` WHERE is_valid = 1 ORDER BY ID ASC";
+        $sql = "SELECT area_name FROM `service_areas` WHERE is_valid = 1 ORDER BY type ASC";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
