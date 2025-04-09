@@ -1,5 +1,23 @@
 <?php
+include 'connection-php.php';
+
+function generateSelectFromSql($sql,$servername,$username,$password,$db){
+    // Create connection
+    $conn = new mysqli($servername, $username, $password,$db);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    //echo $sql."<br>";
+    $result = $conn->query($sql);
+    $conn->close();
+    return $result;
+}
 session_start();
+
+// Check if the user is logged in
 $is_logged_in = isset($_SESSION["user_id"]);
 ?>
 
@@ -50,38 +68,26 @@ $is_logged_in = isset($_SESSION["user_id"]);
         <a href="category-select-PHP.php" class="cta-button"><< Categories</a>
     </div>
 
-    <div class="tags">
-        <h2 style="color: #15BDA1; font-family:Montserrat">Cuisines</h2>
-        <button class="tag">Breakfast</button>
-        <button class="tag">Caribbean</button>
-        <button class="tag">Chinese</button>
-        <button class="tag">Desserts</button>
-        <button class="tag">Fusion</button>
-        <button class="tag">Greek</button>
-        <br><br>
-        <button class="tag">Halal</button>
-        <button class="tag">Indian</button>
-        <button class="tag">Italian</button>
-        <button class="tag">Japanese</button>
-        <button class="tag">Juice & Smoothies</button>
-        <br><br>
-        <button class="tag">Korean</button>
-        <button class="tag">Mexican</button>
-        <button class="tag">Middle Eastern</button>
-        <button class="tag">Seafood</button>
-        <button class="tag">Soul Food</button>
-        <button class="tag">Southern BBQ</button>
-        <br><br>
-        <button class="tag">Street Food</button>
-        <button class="tag">Tex-Mex</button>
-        <button class="tag">Thai</button>
-        <button class="tag">Vegan-friendly</button>
-        <button class="tag">Vegetarian-friendly</button>
-        <br><br>
-        <button class="tag">Western</button>
-        <br><br>
-        <button class="button" id="search">Search</button>
-    </div>
+    <h2>Search Food Trucks</h2>
+	<div class="search-form">
+	<form class="registration-form" action="foodtruckSearchResults.php" method="post">
+            
+            <label>City</label>
+            <?php citiesSelect("foodtruck-city", $servername, $username, $password, $dbname); ?>                                            
+            
+            <label>Food tag 1</label>
+            <?php foodTruckFoodsSelect("foodtruck-food1", $servername, $username, $password, $dbname); ?>
+			
+            <label>Food tag 2</label>
+            <?php foodTruckFoodsSelect("foodtruck-food2", $servername, $username, $password, $dbname); ?>
+			
+            <label>Food tag 3</label>
+			<?php foodTruckFoodsSelect("foodtruck-food3", $servername, $username, $password, $dbname); ?>
+            <br><br>
+			
+            <button id="foodtruck-submit" type="submit" class="btn full-width">Submit</button>
+        </form>
+		</div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -90,3 +96,69 @@ $is_logged_in = isset($_SESSION["user_id"]);
 
 </body>
 </html>
+<?php
+function foodtruckFoodsSelect($name, $servername, $username, $password, $dbname) {
+    ?>
+    <select name="<?php echo $name; ?>" id="<?php echo $name; ?>" class="form-select">
+        <?php
+        // Connect to the database
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check the connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // Query to fetch all entries from the foodtruck_foods table
+        $sql = "SELECT type FROM `foodtruck_foods` ORDER BY ID ASC";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // Output each row as an option in the dropdown
+            while ($row = $result->fetch_assoc()) {
+                echo "<option value='" . htmlspecialchars($row["type"]) . "'>" . htmlspecialchars($row["type"]) . "</option>";
+            }
+        } else {
+            echo "<option disabled>No food options available</option>";
+        }
+
+        // Close the database connection
+        $conn->close();
+        ?>
+    </select>
+    <?php
+}
+
+function citiesSelect($name, $servername, $username, $password, $dbname) {
+    ?>
+    <select name="<?php echo $name; ?>" id="<?php echo $name; ?>" class="form-select">
+        <?php
+        // Connect to the database
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check the connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // Query to fetch all entries from the service_areas table
+        $sql = "SELECT area_name FROM `service_areas` WHERE is_valid = 1 ORDER BY ID ASC";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // Output each row as an option in the dropdown
+            while ($row = $result->fetch_assoc()) {
+                echo "<option value='" . htmlspecialchars($row["area_name"]) . "'>" . htmlspecialchars($row["area_name"]) . "</option>";
+            }
+        } else {
+            echo "<option disabled>No service areas available</option>";
+        }
+
+        // Close the database connection
+        $conn->close();
+        ?>
+    </select>
+    <?php
+}
+?>
+

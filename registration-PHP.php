@@ -599,7 +599,7 @@ $is_logged_in = isset($_SESSION["user_id"]);
 <?php
 function  citiesSelect($name){
     ?>
-                <select name="<?php echo $name; ?>" id="<?php echo $name; ?>"  class="form-select" >
+                <select name="<?php echo $name; ?>" id="<?php echo $name; ?>"  class="form-select" required>
                     <option value="Kelowna, B.C.">Kelowna, B.C.</option>
                     <option value="Oliver, B.C.">Oliver, B.C.</option>
                     <option value="Osoyoos, B.C.">Osoyoos, B.C.</option>
@@ -614,19 +614,20 @@ function  citiesSelect($name){
 function serviceAreas ($name,$servername,$username,$password,$dbname){
 ?>
 
-            <select name="<?php echo $name; ?>[]" id="<?php echo $name; ?>"  class="form-select" multiple="multiple">
-                <?php
-                $sql="SELECT ID, area_name FROM `service_areas` where is_valid=1 order by ID asc";
-                $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                    echo "<option value='".$row["ID"]."'>".$row["area_name"]."</option>\n";
-                    }
-                } else {
-                    echo "0 results";
-                }
-                ?>
-            </select>
+            <select name="<?php echo $name; ?>[]" id="<?php echo $name; ?>" class="form-select" multiple="multiple" required>
+			<option value="" disabled selected>Select an area</option>
+			<?php
+			$sql = "SELECT ID, area_name FROM `service_areas` WHERE is_valid=1 ORDER BY ID ASC";
+			$result = generateSelectFromSql($sql, $servername, $username, $password, $dbname);
+			if ($result->num_rows > 0) {
+				while ($row = $result->fetch_assoc()) {
+				echo "<option value='" . $row["ID"] . "'>" . $row["area_name"] . "</option>\n";
+			}
+			} else {
+				echo "<option value='' disabled>No results available</option>";
+			}
+			?>
+		</select>
+
             <?php
 }?>
