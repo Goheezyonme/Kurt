@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="style_sign.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-links">
+				<a href="Landing page.html" class="logo">Home</a>
+            </div>
+        </div>
+    </nav>
+
+   <div class="form-container">
+        <h1 class="form-title">Sign In</h1>
+        <p class="form-description">Welcome back! Please log in.</p>
+
+        <form class="registration-form" method="POST" action="signin.php">
+            <label>Email</label>
+            <input type="email" name="email" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <button type="submit" class="btn full-width">Sign In</button>
+        </form>
+
+        <p class="center-text">Don't have an account? <a href="Signup.html">Sign up</a></p>
+    </div>
+
+    <!-- Footer -->
+	<footer class="footer">
+        <p>&copy; 2025 Interior South Okanagan Talent. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
