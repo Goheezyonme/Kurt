@@ -236,6 +236,9 @@ $is_logged_in = isset($_SESSION["user_id"]);
 
             <label >Area of Operation</label>
             <?php serviceAreas("entertainer-service_area",$servername,$username,$password,$dbname);?>
+			
+			<label>Hourly Rate</label>
+            <input id="entertainer-rate" name="entertainer-rate"  type="number" min=0 required>
 
             <label class="full-width">Logo</label>
             <input id="entertainer-logo" name="entertainer-logo"  type="url" placeholder="Paste img URL here" class="full-width" accept="image/*">

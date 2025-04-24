@@ -127,24 +127,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } /*else {
     echo $entertainer_description."\n";
     }*/
+	
+	$entertainer_phone = htmlspecialchars($_POST['entertainer-phone']);
+    if (empty($entertainer_phone)) {
+    echo "entertainer_phone is empty";
+    } /*else {
+    echo $entertainer_phone."\n";
+    }*/
+	
+	$entertainer_website = htmlspecialchars($_POST['entertainer-website']);
+    if (empty($entertainer_website)) {
+    echo "entertainer_website is empty";
+    } /*else {
+    echo $entertainer_website."\n";
+    }*/
+	
+	$entertainer_rate = htmlspecialchars($_POST['entertainer-rate']);
+    if (empty($entertainer_rate)) {
+    echo "entertainer_rate is empty";
+    } /*else {
+    echo $entertainer_rate."\n";
+    }*/
 
 
 
     
     $entertainer=$entertainer_name;
 
-    $sql="INSERT INTO `musicians`".
-    " (`name`, `logo`,`email`,".
-    " `address`, `city`, `postal_code`,".
-    "  `photo1`, `photo2`, `photo3`,".
-    "  `description`, `genre1`, `genre2`,".
-    "  `genre3`, `review_stars`, `review_desc`)".
-    "  VALUES ".
-    " ('".$entertainer_name."','".$entertainer_logo."', '".$entertainer_email."', ".
-    " '".$entertainer_address."', '".$entertainer_city."','".$entertainer_postal_code."', ".
-    " '".$entertainer_pic1."', '".$entertainer_pic2."','".$entertainer_pic3."', ".
-    " '".$entertainer_description."', '".$entertainer_genre1."','".$entertainer_genre2."', ".
-    " '".$entertainer_genre3."','0','')";
+   $sql = "INSERT INTO `musicians`" .
+    " (`name`, `logo`, `email`, `address`, `city`, `postal_code`, " .
+    "  `photo1`, `photo2`, `photo3`, `description`, `genre1`, `genre2`, " .
+    "  `genre3`, `review_stars`, `review_desc`, `phone`, `web`, `rate`)" . // ✅ Fix
+    "  VALUES " .
+    " ('".$entertainer_name."', '".$entertainer_logo."', '".$entertainer_email."', " .
+    " '".$entertainer_address."', '".$entertainer_city."', '".$entertainer_postal_code."', " .
+    " '".$entertainer_pic1."', '".$entertainer_pic2."', '".$entertainer_pic3."', " .
+    " '".$entertainer_description."', '".$entertainer_genre1."', '".$entertainer_genre2."', " .
+    " '".$entertainer_genre3."', '0', '', '".$entertainer_phone."', '".$entertainer_website."', '".$entertainer_rate."')";
+
+
     
     //echo "<br>".$sql;
     //die();

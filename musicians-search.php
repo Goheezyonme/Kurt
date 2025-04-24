@@ -1,5 +1,23 @@
 <?php
+include 'connection-php.php';
+
+function generateSelectFromSql($sql,$servername,$username,$password,$db){
+    // Create connection
+    $conn = new mysqli($servername, $username, $password,$db);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    //echo $sql."<br>";
+    $result = $conn->query($sql);
+    $conn->close();
+    return $result;
+}
 session_start();
+
+// Check if the user is logged in
 $is_logged_in = isset($_SESSION["user_id"]);
 ?>
 
@@ -50,42 +68,70 @@ $is_logged_in = isset($_SESSION["user_id"]);
         <a href="category-select-PHP.php" class="cta-button"><< Categories</a>
     </div>
 
-    <div class="tags">
-        <h2 style="color: #15BDA1; font-family:Montserrat">Genres</h2>
-        <button class="tag">Aboriginal</button>
-        <button class="tag">African</button>
-        <button class="tag">Ambient</button>
-        <button class="tag">Blues</button>
-        <button class="tag">Bohemian Country</button>
-        <button class="tag">Classical</button>
-        <br><br>
-        <button class="tag">Country</button>
-        <button class="tag">Dance</button>
-        <button class="tag">DJ</button>
-        <button class="tag">Electronic</button>
-        <button class="tag">Folk</button>
-        <br><br>
-        <button class="tag">Gospel</button>
-        <button class="tag">Heavy Metal</button>
-        <button class="tag">Hip-Hop</button>
-        <button class="tag">Indie</button>
-        <button class="tag">Indigenous</button>
-        <button class="tag">Jazz</button>
-        <br><br>
-        <button class="tag">K-Pop</button>
-        <button class="tag">Latin</button>
-        <button class="tag">Pop Punk</button>
-        <button class="tag">Reggae</button>
-        <button class="tag">Rhythm and Blues</button>
-        <br><br>
-        <button class="tag">Rock</button>
-        <button class="tag">Solo Artists</button>
-        <button class="tag">Top 40</button>
-        <button class="tag">Other</button>
-        <br><br>
-        <button class="button" id="search">Search</button>
-    </div>
+    <h2>Search Musicians</h2>
+	<div class="search-form">
+	<form class="registration-form" action="musicianSearchResults.php" method="post">
+            
+            <label>City</label>
+            <?php citiesSelect("musician_city", $servername, $username, $password, $dbname); ?>
 
+            <label>Music tag 1</label>
+            <select name="musician_genre1" id="musician_genre1"  class="form-select" >
+            <?php
+            $sql="SELECT ID , genre as type FROM `musician_genre` where is_valid=1 order by genre asc";
+
+            $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
+
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                echo "<option value='".$row["ID"]."'>".$row["type"]."</option>\n";
+                }
+            } else {
+                echo "0 results";
+            }
+
+            ?>
+            </select>
+            <label>Music tag 2</label>
+            <select name="musician_genre2" id="musician_genre2"  class="form-select" >
+            <?php
+            $sql="SELECT ID , genre as type FROM `musician_genre` where is_valid=1 order by genre asc";
+
+            $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
+
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                echo "<option value='".$row["ID"]."'>".$row["type"]."</option>\n";
+                }
+            } else {
+                echo "0 results";
+            }
+
+            ?>
+            </select>
+            <label>Music tag 3</label>
+            <select name="musician_genre3" id="musician_genre3"  class="form-select" >
+            <?php
+            $sql="SELECT ID , genre as type FROM `musician_genre` where is_valid=1 order by genre asc";
+
+            $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
+
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                echo "<option value='".$row["ID"]."'>".$row["type"]."</option>\n";
+                }
+            } else {
+                echo "0 results";
+            }
+
+            ?>
+            </select><br><br>
+            <button type="submit" class="btn full-width">Submit</button>
+        </form>
+	</div>
     <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2025 Interior South Okanagan Talent. All rights reserved.</p>
@@ -93,4 +139,57 @@ $is_logged_in = isset($_SESSION["user_id"]);
 
 </body>
 </html>
+<?php
+function citiesSelect($name, $servername, $username, $password, $dbname) {
+    ?>
+    <select name="<?php echo $name; ?>" id="<?php echo $name; ?>" class="form-select">
+        <?php
+        // Connect to the database
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check the connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // Query to fetch all entries from the service_areas table
+        $sql = "SELECT area_name FROM `service_areas` WHERE is_valid = 1 ORDER BY ID ASC";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // Output each row as an option in the dropdown
+            while ($row = $result->fetch_assoc()) {
+                echo "<option value='" . htmlspecialchars($row["area_name"]) . "'>" . htmlspecialchars($row["area_name"]) . "</option>";
+            }
+        } else {
+            echo "<option disabled>No service areas available</option>";
+        }
+
+        // Close the database connection
+        $conn->close();
+        ?>
+    </select>
+    <?php
+}
+
+function serviceAreas ($name,$servername,$username,$password,$dbname){
+?>
+
+            <select name="<?php echo $name; ?>[]" id="<?php echo $name; ?>" class="form-select" multiple="multiple" required>
+			<option value="" disabled selected>Select an area</option>
+			<?php
+			$sql = "SELECT ID, area_name FROM `service_areas` WHERE is_valid=1 ORDER BY ID ASC";
+			$result = generateSelectFromSql($sql, $servername, $username, $password, $dbname);
+			if ($result->num_rows > 0) {
+				while ($row = $result->fetch_assoc()) {
+				echo "<option value='" . $row["ID"] . "'>" . $row["area_name"] . "</option>\n";
+			}
+			} else {
+				echo "<option value='' disabled>No results available</option>";
+			}
+			?>
+		</select>
+
+            <?php
+}?>
  
