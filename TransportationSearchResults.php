@@ -126,6 +126,9 @@ $is_logged_in = isset($_SESSION["user_id"]);
 					echo "<h3>Email: ". $row["email"]. "</h3>";
 					echo "<h3>Website: <a href='". $row["web"]. "'>". $row["web"]. "</a></h3>";
 					echo "<p> ". $row["description"]. "</p>";
+					echo "<img src='". $row["photo1"]. "' alt='Photo 1'>";
+					echo "<img src='". $row["photo2"]. "' alt='Photo 1'>";
+					echo "<img src='". $row["photo3"]. "' alt='Photo 1'>";
                     echo "</div>";
                 }
             } else {

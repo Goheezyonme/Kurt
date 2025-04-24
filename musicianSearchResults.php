@@ -152,10 +152,14 @@ $is_logged_in = isset($_SESSION["user_id"]);
 					}
 					echo "<p> ". $row["description"]. "</p>";
 					echo "<h3>Hourly Rate: $". $row["rate"]. "</h3>";
+					echo "<img src='". $row["photo1"]. "' alt='Photo 1'>";
+					echo "<img src='". $row["photo2"]. "' alt='Photo 1'>";
+					echo "<img src='". $row["photo3"]. "' alt='Photo 1'>";
                     echo "</div>";
                 }
             } else {
                 echo "<h3 style='text-align: center'>No Results found</h3>";
+				echo "</div>";
             }
             ?>
     <!-- Footer -->
