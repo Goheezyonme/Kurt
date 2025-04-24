@@ -70,3 +70,8 @@ nav, header, section, footer {
 	margin: 0 auto;
 }
 
+.result img{
+	width: 500px;
+	height: 200px;
+}
+
