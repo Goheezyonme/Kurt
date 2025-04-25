@@ -3,8 +3,8 @@ session_start();
 
 $host = "localhost";
 $user = "root";  
-$pass = ""; 
-$dbname = "user_signups"; 
+$pass = "mysql"; 
+$dbname = "isotalent"; 
 
 // Connect to the database
 $conn = new mysqli($host, $user, $pass, $dbname);
@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 
 // Redirect if already logged in
 if (isset($_SESSION["user_id"])) {
-    header("Location: category-select-.php");
+    header("Location: category-select-php.php");
     exit();
 }
 
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["full_name"] = $user["full_name"];
 
             // Redirect to the protected page
-            header("Location: category-select-HTML.php");
+            header("Location: category-select-php.php");
             exit();
         } else {
             $error = "Invalid password.";
@@ -53,6 +53,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "No user found with this email.";
     }
 }
-?>
-
-
