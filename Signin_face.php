@@ -38,6 +38,11 @@
 	<footer class="footer">
         <p>&copy; 2025 Interior South Okanagan Talent. All rights reserved.</p>
     </footer>
+    <?php if (!empty($error)): ?>
+    <script>
+        alert("<?= htmlspecialchars($error) ?>");
+    </script>
+<?php endif; ?>
 
 </body>
 </html>
