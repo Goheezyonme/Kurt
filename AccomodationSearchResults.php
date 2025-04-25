@@ -78,7 +78,7 @@ $is_logged_in = isset($_SESSION["user_id"]);
                     <a href="logout.php" class="cta-button">Log Out</a>
                 <?php else: ?>
 					<br>
-                    <span class="user-welcome">You are browsing as a guest. <a href="signin.php">Sign in</a> for more features!</span>
+                    <span class="user-welcome">You are browsing as a guest. <a href="testSignin.html">Sign in</a> for more features!</span>
                 <?php endif; ?>
             </div>
         </div>
