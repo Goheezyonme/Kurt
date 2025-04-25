@@ -3,7 +3,7 @@ session_start();
 
 $host = "localhost";
 $user = "root";  
-$pass = ""; 
+$pass = "mysql"; 
 $dbname = "user_signups"; 
 
 // Connect to the database
@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 
 // Redirect if already logged in
 if (isset($_SESSION["user_id"])) {
-    header("Location: category-select-.php");
+    header("Location: category-select-PHP.php");
     exit();
 }
 
