@@ -1,13 +1,9 @@
 <?php
-include 'connection-php.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'vendor/autoload.php';
 
 $entertainer="";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    //print_r($_POST);
-    //echo "<br>";
-    //die(); 
 
     $entertainer_name = htmlspecialchars($_POST['entertainer-name']);
     if (empty($entertainer_name)) {
@@ -150,67 +146,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }*/
 
 
+$mail = new PHPMailer(true);
+try {
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com'; // Or use your SMTP provider
+    $mail->SMTPAuth = true;
+    $mail->Username = 'crispedhades@gmail.com'; //senders address
+    $mail->Password = 'uveq fnfi biug crud'; //app password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
 
-    
-    $entertainer=$entertainer_name;
+    $mail->setFrom('crispedhades@gmail.com', 'Donovan Thomas'); //senders address and name
+    $mail->addAddress('donovan.thomas0205@gmail.com'); //receiving address
+    $mail->Subject = 'New musician registration';
+    $mail->Body = 'A new musician has requested a registration.
+	Name: ' . $entertainer_name . '
+	Email: ' . $entertainer_email. '
+	Phone Number: ' . $entertainer_phone. '
+	Website: ' . $entertainer_website. '
+	Address: ' . $entertainer_address. '
+	City: ' . $entertainer_city. '
+	Postal Code: ' . $entertainer_postal_code. ' 
+	Genres: ' . $entertainer_genre1 . ', ' . $entertainer_genre2 . ', ' . $entertainer_genre3 . '
+	Hourly Rate: ' . $entertainer_rate . '
+	Service Areas: ' . implode(', ', $entertainer_service_area) . '
+	Logo: ' . $entertainer_logo . '
+	Pic1: ' . $entertainer_pic1 . '
+	Pic2: ' . $entertainer_pic2 . '
+	Pic3: ' . $entertainer_pic3 . '
+	Audio sample: ' . $entertainer_video . '
+	Description: ' . $entertainer_description;
 
-   $sql = "INSERT INTO `musicians`" .
-    " (`name`, `logo`, `email`, `address`, `city`, `postal_code`, " .
-    "  `photo1`, `photo2`, `photo3`, `description`, `genre1`, `genre2`, " .
-    "  `genre3`, `review_stars`, `review_desc`, `phone`, `web`, `rate`)" . // ✅ Fix
-    "  VALUES " .
-    " ('".$entertainer_name."', '".$entertainer_logo."', '".$entertainer_email."', " .
-    " '".$entertainer_address."', '".$entertainer_city."', '".$entertainer_postal_code."', " .
-    " '".$entertainer_pic1."', '".$entertainer_pic2."', '".$entertainer_pic3."', " .
-    " '".$entertainer_description."', '".$entertainer_genre1."', '".$entertainer_genre2."', " .
-    " '".$entertainer_genre3."', '0', '', '".$entertainer_phone."', '".$entertainer_website."', '".$entertainer_rate."')";
-
-
-    
-    //echo "<br>".$sql;
-    //die();
- 
-    //$servername = $local_servername;
-    //$username = $local_username;
-    //$password = $local_password;
-    
-    // Create connection
-    $conn = new mysqli($servername, $username, $password,$dbname);
-    
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    //echo $sql."<br>";
-    $result = $conn->query($sql);
-    //we obtain the last id
-    $last_id = $conn->insert_id;
-    //echo "<br>".$last_id."<br>\n";
+   $mail->send();
+} catch (Exception $e) {
+    echo "<p style='color:red;'>❌ Error sending email: " . $mail->ErrorInfo . "</p>";
 
 
-    $insert_sql="INSERT INTO `musician_areas`(`id_musician`, `id_area`) VALUES ";
+} catch (Exception $e) {
+    echo "<p style='color:red;'>❌ Error sending email: " . $mail->ErrorInfo . "</p>";
+}
 
-
-    //iterate with array of areas to write the sql
-    foreach($entertainer_service_area as $x => $y){
-      $insert_sql.="('".$last_id."','".$y."'),";
-    }
-
-    $insert_sql=ltrim($insert_sql );
-    $insert_sql=substr($insert_sql,0,strlen($insert_sql)-1);
-    $insert_sql.=";";
-    //echo "<br>".$insert_sql."<br>";
-    //die();
-    $conn->query($insert_sql);
-
-    //insertamos en tabla intermedia
-    $conn->close();
-
-    
-  }
 ?>
 <script type="text/javascript">
-alert("entertainer '<?php echo $entertainer; ?>' created.");
+alert("Registration submitted. Redirecting to registration page.");
 window.location.href = "registration-PHP.php";
 </script>

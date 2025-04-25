@@ -1,36 +1,39 @@
 <?php
-session_start();
-$servername = "localhost";
-$username = "root";
-$password = "mysql";
-$dbname = "isotalent";
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'vendor/autoload.php';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+$name = htmlspecialchars($_POST['full_name']);
+$qualifications = htmlspecialchars($_POST['qualifications']);
+
+$mail = new PHPMailer(true);
+try {
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com'; // Or use your SMTP provider
+    $mail->SMTPAuth = true;
+    $mail->Username = 'crispedhades@gmail.com'; //senders address
+    $mail->Password = 'uveq fnfi biug crud'; //app password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
+
+    $mail->setFrom('crispedhades@gmail.com', 'Donovan Thomas'); //senders address and name
+    $mail->addAddress('donovan.thomas0205@gmail.com'); //receiving address
+    $mail->Subject = 'New signup';
+    $mail->Body = 'A new member has submitted a signup request.
+	Fullname: ' . $name . '
+	Qualification: ' . $qualifications;
+
+   $mail->send();
+} catch (Exception $e) {
+    echo "<p style='color:red;'>❌ Error sending email: " . $mail->ErrorInfo . "</p>";
+
+
+} catch (Exception $e) {
+    echo "<p style='color:red;'>❌ Error sending email: " . $mail->ErrorInfo . "</p>";
 }
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $fullName = $_POST["full_name"];
-    $email = $_POST["email"];
-    $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
-
-    $sql = "INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $fullName, $email, $password);
-
-    if ($stmt->execute()) {
-        // Start a session for the user
-        $_SESSION["user_fullname"] = $fullName;
-        $_SESSION["user_email"] = $email;
-
-        // Redirect to the protected page
-        header("category-select-php.php");
-        exit();
-    } else {
-        echo "Error: Could not insert user.";
-    }
-}
-
-$conn->close();
 ?>
+<script type="text/javascript">
+alert("Application submitted. Redirecting to home page.");
+window.location.href = "Landing page.html";
+</script>
