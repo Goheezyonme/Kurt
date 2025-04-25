@@ -2,6 +2,10 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->safeLoad();
 
 $entertainer="";
 
@@ -152,13 +156,13 @@ try {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com'; // Or use your SMTP provider
     $mail->SMTPAuth = true;
-    $mail->Username = 'ISO talent gmail goes here'; //senders address
-    $mail->Password = 'ISO talent gmail app password goes here'; //app password
+    $mail->Username = $_ENV['MAIL_USERNAME'];
+	$mail->Password = $_ENV['MAIL_PASSWORD'];
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
-    $mail->setFrom('ISO talent gmail goes here', 'ISO talent'); //senders address and name
-    $mail->addAddress('kurtjoudrey@hotmail.com'); //receiving address
+    $mail->setFrom($_ENV['MAIL_USERNAME'], 'ISO Talent'); //senders address and name
+    $mail->addAddress($_ENV['MAIL_RECEIVER']);
     $mail->Subject = 'New musician registration';
     $mail->Body = 'A new musician has requested a registration.
 	Name: ' . $entertainer_name . '
