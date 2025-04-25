@@ -14,6 +14,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } /*else {
     echo $musician_city."\n";
     }*/
+	
+	$musician_rate = htmlspecialchars($_POST['musician_rate']);
+    if (empty($musician_rate)) {
+    echo "musician_rate is empty";
+    } /*else {
+    echo $musician_rate."\n";
+    }*/
 
     $musician_genre1 = htmlspecialchars($_POST['musician_genre1']);
     if (empty($musician_genre1)) {
@@ -43,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     "JOIN musician_genre mg ON mg.id IN (m.genre1, m.genre2, m.genre3) " .  // Matching IDs
     "WHERE sa.area_name = '". $musician_city . "' AND " .
     "mg.id IN ('". $musician_genre1 . "', '". $musician_genre2 . "', '". $musician_genre3 . "') AND " .
-    "m.is_valid = 1;";
+    "m.is_valid = 1 AND m.rate <=" . $musician_rate . ";";
 
 
 

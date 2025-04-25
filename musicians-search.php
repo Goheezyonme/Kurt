@@ -128,7 +128,11 @@ $is_logged_in = isset($_SESSION["user_id"]);
             }
 
             ?>
-            </select><br><br>
+            </select>
+			
+			<label>Maximum Hourly Rate ($/hr)</label>
+			<input type=number min=0 name="musician_rate" >
+			<br><br>
             <button type="submit" class="btn full-width">Submit</button>
         </form>
 	</div>
