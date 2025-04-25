@@ -152,13 +152,13 @@ try {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com'; // Or use your SMTP provider
     $mail->SMTPAuth = true;
-    $mail->Username = 'crispedhades@gmail.com'; //senders address
-    $mail->Password = 'uveq fnfi biug crud'; //app password
+    $mail->Username = 'ISO talent gmail goes here'; //senders address
+    $mail->Password = 'ISO talent gmail app password goes here'; //app password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
-    $mail->setFrom('crispedhades@gmail.com', 'Donovan Thomas'); //senders address and name
-    $mail->addAddress('donovan.thomas0205@gmail.com'); //receiving address
+    $mail->setFrom('ISO talent gmail goes here', 'ISO talent'); //senders address and name
+    $mail->addAddress('kurtjoudrey@hotmail.com'); //receiving address
     $mail->Subject = 'New musician registration';
     $mail->Body = 'A new musician has requested a registration.
 	Name: ' . $entertainer_name . '
