@@ -21,7 +21,7 @@
         <h1 class="form-title">Sign In</h1>
         <p class="form-description">Welcome back! Please log in.</p>
 
-        <form class="registration-form" method="POST" action="signin.php">
+        <form class="registration-form" method="POST" action="ogSignin.php">
             <label>Email</label>
             <input type="email" name="email" required>
 
@@ -38,11 +38,5 @@
 	<footer class="footer">
         <p>&copy; 2025 Interior South Okanagan Talent. All rights reserved.</p>
     </footer>
-    <?php if (!empty($error)): ?>
-    <script>
-        alert("<?= htmlspecialchars($error) ?>");
-    </script>
-<?php endif; ?>
-
 </body>
 </html>
