@@ -250,7 +250,7 @@ $is_logged_in = isset($_SESSION["user_id"]);
 
             <label class="full-width">Video Sample</label>
         
-            <input type="url" placeholder="Paste video URL here" class="full-width" id="entertainer-video" name="entertainer-video">
+            <input type="url" placeholder="Paste video URL here" class="full-width" id="entertainer-video" name="entertainer-video" required>
 <!--
             <label class="full-width">Audio Sample</label>
             <input type="file" class="full-width">
