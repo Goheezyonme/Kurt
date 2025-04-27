@@ -9,7 +9,8 @@ $dotenv->safeLoad();
 
 
 $name = htmlspecialchars($_POST['full_name']);
-$qualifications = htmlspecialchars($_POST['qualifications']);
+$qualification = htmlspecialchars($_POST['qualification']);
+$email = htmlspecialchars($_POST['email']);
 
 $mail = new PHPMailer(true);
 try {
@@ -27,7 +28,8 @@ try {
     $mail->Subject = 'New signup';
     $mail->Body = 'A new member has submitted a signup request.
 	Fullname: ' . $name . '
-	Qualification: ' . $qualifications;
+	Qualification: ' . $qualification . '
+	Email: ' . $email;
 
    $mail->send();
 } catch (Exception $e) {
