@@ -3,7 +3,7 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "mysql";
-$dbname = "isotalent";
+$dbname = "isota200_isotalent";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {

@@ -215,7 +215,7 @@ nav, header, section, footer {
 
 .search-form input,
 .search-form textarea {
-    width: 100%;
+    width: 50%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;

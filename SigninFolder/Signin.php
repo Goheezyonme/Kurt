@@ -4,7 +4,7 @@ session_start();
 $host = "localhost";
 $user = "root";  
 $pass = "mysql"; 
-$dbname = "isotalent"; 
+$dbname = "isota200_isotalent"; 
 
 // Connect to the database
 $conn = new mysqli($host, $user, $pass, $dbname);

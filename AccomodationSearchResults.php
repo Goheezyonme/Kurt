@@ -5,7 +5,8 @@ include 'connection-php.php';
 $accomodation="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    //print_r($_POST);
+    //die();
 	
 	$accomodation_city = htmlspecialchars($_POST['accomodation-city']);
     if (empty($accomodation_city)) {
@@ -19,9 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
 
     $sql="SELECT * FROM `accommodations` WHERE ".
-	"city = '". $accomodation_city . "' AND ".
-	"num_rooms >= '". $accomodation_rooms. "' AND ".
-	"is_valid = 1;";
+	"(city = '". $accomodation_city . "' or -1='". $accomodation_city . "') AND ".
+	"(num_rooms >= '". $accomodation_rooms. "' or 0='". $accomodation_rooms. "') AND ".
+	"is_valid = 1 order by name;";
 
     
     //echo $sql;

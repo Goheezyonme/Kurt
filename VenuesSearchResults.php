@@ -50,13 +50,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 
     $sql="SELECT * FROM`venues`WHERE ".
-    "city = '". $venue_city . "' AND ".
+    "(city = '". $venue_city . "' or '". $venue_city . "'=-1 ) AND ".
 	"bathrooms_available >= '". $venue_bathrooms . "' AND ".
 	"maximum_capacity >= '". $venue_capacity . "' AND ".
 	"parking_available >= '". $venue_parking . "' AND ".
 	"(liquor_license = ". (($liquor_license == 'yes') ? 1 : 0). " OR liquor_license = 1) AND ".
 	"(kitchen_available = ". (($kitchen == 'yes') ? 1 : 0). " OR kitchen_available = 1) AND ".
-	"is_valid = 1;";
+	"is_valid = 1  ".
+	"order by name;";
 
     
     //echo "<br>".$sql;

@@ -1,4 +1,7 @@
 <?php
+//print_r($_POST);
+//echo "<br>";
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
@@ -17,30 +20,33 @@ try {
     $mail = new PHPMailer(true);
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com'; // Or use your SMTP provider
+    
     $mail->SMTPAuth = true;
     $mail->Username = $_ENV['MAIL_USERNAME'];
-	$mail->Password = $_ENV['MAIL_PASSWORD'];
+    $mail->Password = $_ENV['MAIL_PASSWORD'];
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
+    
 
-    $mail->setFrom($_ENV['MAIL_USERNAME'], 'ISO Talent'); //senders address and name
+    $mail->setFrom($_ENV['MAIL_USERNAME'], 'I.S.O. Talent'); //senders address and name
     $mail->addAddress($_ENV['MAIL_RECEIVER']);
     $mail->Subject = 'New signup';
     $mail->Body = 'A new member has submitted a signup request.
 	Fullname: ' . $name . '
 	Qualification: ' . $qualification . '
 	Email: ' . $email;
+    
 
    $mail->send();
+   
 } catch (Exception $e) {
     echo "<p style='color:red;'>❌ Error sending email: " . $mail->ErrorInfo . "</p>";
+    die();
 
 
-} catch (Exception $e) {
-    echo "<p style='color:red;'>❌ Error sending email: " . $mail->ErrorInfo . "</p>";
-}
+} 
 ?>
 <script type="text/javascript">
-alert("Application submitted");
-window.location.href = "Landing page.html";
+    alert("Application submitted");
+    window.location.href = "Landing page.html";
 </script>

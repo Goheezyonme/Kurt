@@ -30,7 +30,7 @@ body {
     color: #15BDA1;
 }
 .cta-button {
-    background-color: #1e3a8a
+    background-color: #1e3a8a;
     padding: 0.5rem 1rem;
     border-radius: 999px;
     font-weight: bold;
@@ -66,12 +66,15 @@ nav, header, section, footer {
 
 .result{
 	border: solid black 2px;
-	width: 50%;
-	margin: 0 auto;
+    background:white;
+	width: 90%;
+    margin:auto;
+    margin-bottom: 10px;
+    
+	
 }
 
 .result img{
 	width: 500px;
 	height: 200px;
 }
-

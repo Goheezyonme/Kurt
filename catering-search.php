@@ -110,13 +110,14 @@ function CateringFoodsSelect($name, $servername, $username, $password, $dbname) 
         }
 
         // Query to fetch all entries from the foodtruck_foods table
-        $sql = "SELECT type FROM `catering_foods` ORDER BY type ASC";
+        $sql = "SELECT ID, type FROM `catering_foods` ORDER BY type ASC";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             // Output each row as an option in the dropdown
+            echo "<option value='-1'>All</option>";
             while ($row = $result->fetch_assoc()) {
-                echo "<option value='" . htmlspecialchars($row["type"]) . "'>" . htmlspecialchars($row["type"]) . "</option>";
+                echo "<option value='" . htmlspecialchars($row["ID"]) . "'>" . htmlspecialchars($row["type"]) . "</option>";
             }
         } else {
             echo "<option disabled>No food options available</option>";
@@ -142,13 +143,14 @@ function citiesSelect($name, $servername, $username, $password, $dbname) {
         }
 
         // Query to fetch all entries from the service_areas table
-        $sql = "SELECT area_name FROM `service_areas` WHERE is_valid = 1 ORDER BY ID ASC";
+        $sql = "SELECT ID, area_name FROM `service_areas` WHERE is_valid = 1 ORDER BY ID ASC";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             // Output each row as an option in the dropdown
+            echo "<option value='-1'>All</option>";
             while ($row = $result->fetch_assoc()) {
-                echo "<option value='" . htmlspecialchars($row["area_name"]) . "'>" . htmlspecialchars($row["area_name"]) . "</option>";
+                echo "<option value='" . htmlspecialchars($row["ID"]) . "'>" . htmlspecialchars($row["area_name"]) . "</option>";
             }
         } else {
             echo "<option disabled>No service areas available</option>";

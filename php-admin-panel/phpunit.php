@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 $local_servername = "localhost";
 $local_username = "root";
 $local_password = "mysql";
-$local_db="isotalent";
+$local_db="isota200_isotalent";
 
 $before=0;
 $after=0;

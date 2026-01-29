@@ -74,13 +74,13 @@ $is_logged_in = isset($_SESSION["user_id"]);
             <?php citiesSelect("venue-city"); ?>
             
             <label>Minimum Number of Bathrooms</label>
-            <input id="venue-bathrooms" name="venue-bathrooms"  type="number" min=0 required>
+            <input id="venue-bathrooms" name="venue-bathrooms"  type="number" min=0 required value=0>
 			
 			<label>Maximum capacity</label>
-            <input id="venue-capacity" name="venue-capacity"  type="number" min=0 required>
+            <input id="venue-capacity" name="venue-capacity"  type="number" min=0 required value=0>
 			
 			<label>Minimum Number of Parking spots</label>
-            <input id="venue-parking" name="venue-parking"  type="number" min=0 required>
+            <input id="venue-parking" name="venue-parking"  type="number" min=0 required value=0>
 			
 			<label>Liquor License?</label>
 			<div class="radio-group">
@@ -122,6 +122,7 @@ $is_logged_in = isset($_SESSION["user_id"]);
 function  citiesSelect($name){
     ?>
                 <select name="<?php echo $name; ?>" id="<?php echo $name; ?>"  class="form-select" >
+                    <option value="-1">All</option>
                     <option value="Kelowna, B.C.">Kelowna, B.C.</option>
                     <option value="Oliver, B.C.">Oliver, B.C.</option>
                     <option value="Osoyoos, B.C.">Osoyoos, B.C.</option>

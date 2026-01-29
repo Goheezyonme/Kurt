@@ -84,8 +84,9 @@ $is_logged_in = isset($_SESSION["user_id"]);
 
             if ($result->num_rows > 0) {
                 // output data of each row
+                echo "<option value='-1'>All</option>\n";
                 while($row = $result->fetch_assoc()) {
-                echo "<option value='".$row["ID"]."'>".$row["type"]."</option>\n";
+                    echo "<option value='".$row["ID"]."'>".$row["type"]."</option>\n";
                 }
             } else {
                 echo "0 results";
@@ -102,6 +103,7 @@ $is_logged_in = isset($_SESSION["user_id"]);
 
             if ($result->num_rows > 0) {
                 // output data of each row
+                echo "<option value='-1'>All</option>\n";
                 while($row = $result->fetch_assoc()) {
                 echo "<option value='".$row["ID"]."'>".$row["type"]."</option>\n";
                 }
@@ -120,6 +122,7 @@ $is_logged_in = isset($_SESSION["user_id"]);
 
             if ($result->num_rows > 0) {
                 // output data of each row
+                echo "<option value='-1'>All</option>\n";
                 while($row = $result->fetch_assoc()) {
                 echo "<option value='".$row["ID"]."'>".$row["type"]."</option>\n";
                 }
@@ -130,9 +133,25 @@ $is_logged_in = isset($_SESSION["user_id"]);
             ?>
             </select>
 			
-			<label>Maximum Hourly Rate ($/hr)</label>
-			<input type=number min=0 name="musician_rate" >
-			<br><br>
+            <?php
+            $sql="SELECT round(max(rate)*1.5,-2) as amount FROM `musicians` where is_valid=1;";
+
+            $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
+            $temp_rate = 0;
+
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    $temp_rate= $row["amount"];
+                }
+            } 
+
+            ?>
+			<label>Maximum Hourly Rate ($/hr) between 0 and <?php echo $temp_rate ?></label>
+            <input type="range" id="musician_rate" name="musician_rate" min="0" max="<?php echo $temp_rate ?>" name="musician_rate" value="0" oninput="this.nextElementSibling.value=this.value" style="width:80%">
+            <output>0</output>
+			<!--<input type=number min=0 name="musician_rate" >-->
+			<br>
+            <br>
             <button type="submit" class="btn full-width">Submit</button>
         </form>
 	</div>
@@ -157,13 +176,14 @@ function citiesSelect($name, $servername, $username, $password, $dbname) {
         }
 
         // Query to fetch all entries from the service_areas table
-        $sql = "SELECT area_name FROM `service_areas` WHERE is_valid = 1 ORDER BY ID ASC";
+        $sql = "SELECT ID, area_name FROM `service_areas` WHERE is_valid = 1 ORDER BY ID ASC";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             // Output each row as an option in the dropdown
+            echo "<option value='-1'>All</option>";
             while ($row = $result->fetch_assoc()) {
-                echo "<option value='" . htmlspecialchars($row["area_name"]) . "'>" . htmlspecialchars($row["area_name"]) . "</option>";
+                echo "<option value='" . htmlspecialchars($row["ID"]) . "'>" . htmlspecialchars($row["area_name"]) . "</option>";
             }
         } else {
             echo "<option disabled>No service areas available</option>";

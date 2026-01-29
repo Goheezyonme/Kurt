@@ -1,4 +1,20 @@
 <?php
+include 'connection-php.php';
+
+function generateSelectFromSql($sql,$servername,$username,$password,$db){
+    // Create connection
+    $conn = new mysqli($servername, $username, $password,$db);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    //echo $sql."<br>";
+    $result = $conn->query($sql);
+    $conn->close();
+    return $result;
+}
 session_start();
 
 // Check if the user is logged in
@@ -60,8 +76,24 @@ $is_logged_in = isset($_SESSION["user_id"]);
             <?php citiesSelect("accomodation-city"); ?>                                        
 
             <label>Minimum Number of Rooms</label>
-            <input id="accomodation-rooms"  name="accomodation-rooms" type="number" min=0 required>
+            <?php
+            $sql="SELECT round(max(num_rooms)*1.5,-2) as amount FROM `accommodations` where is_valid=1;";
 
+            $result= generateSelectFromSql($sql,$servername,$username,$password,$dbname);
+            $temp_rooms = 0;
+
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    $temp_rooms= $row["amount"];
+                }
+            } 
+
+            ?>
+            <!--<input id="accomodation-rooms"  name="accomodation-rooms" type="number" min=0 required>-->
+            <input type="range" id="accomodation-rooms" name="accomodation-rooms" min="0" max="<?php echo $temp_rooms ?>" value="0" oninput="this.nextElementSibling.value=this.value" style="width:70%">
+            <output>0</output>
+            <br>
+            <br>
             <button id="accomodation-submit" type="submit" class="btn full-width">Submit</button>
         </form>
 	</div>
@@ -78,6 +110,7 @@ $is_logged_in = isset($_SESSION["user_id"]);
 function  citiesSelect($name){
     ?>
                 <select name="<?php echo $name; ?>" id="<?php echo $name; ?>"  class="form-select" >
+                    <option value="-1">All</option>
                     <option value="Kelowna, B.C.">Kelowna, B.C.</option>
                     <option value="Oliver, B.C.">Oliver, B.C.</option>
                     <option value="Osoyoos, B.C.">Osoyoos, B.C.</option>

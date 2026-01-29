@@ -4,6 +4,8 @@ include 'connection-php.php';
 $catering="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //print_r($_POST);
+    //die();
 
 
     $catering_city = htmlspecialchars($_POST['catering-city']);
@@ -44,11 +46,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     "cf.type IN ('". $catering_food1 . "', '". $catering_food2 . "', '". $catering_food3 . "') AND
 	c.is_valid = 1;";
 
-
+    $sql=" select c.*,c2.ind3x, ca.id_area \n" .
+    " FROM \n" .
+    " catering c JOIN \n" .
+    " ( \n" .
+    " select c1.ID,c1.name,c1.food1,c1.food2,c1.food3,sum(ind3x) as ind3x \n" .
+    " FROM( \n" .
+    " select c.ID, c.name,c.food1,c.food2,c.food3,cf.id as foodId, 4 as ind3x \n" .
+    " from catering c join (select c.ID from catering_foods c where (c.ID in (".$catering_food1.",".$catering_food2.",".$catering_food3.") or -1 in (".$catering_food1.",".$catering_food2.",".$catering_food3.")) and is_valid=1) as cf on c.food1 = cf.id \n" .
+    " UNION \n" .
+    " select c.ID, c.name,c.food1,c.food2,c.food3,cf.id as foodId, 2 as ind3x \n" .
+    " from catering c join (select c.ID from catering_foods c where (c.ID in (".$catering_food1.",".$catering_food2.",".$catering_food3.") or -1 in (".$catering_food1.",".$catering_food2.",".$catering_food3.")) and is_valid=1) as cf on c.food2 = cf.id \n" .
+    " UNION \n" .
+    " select c.ID, c.name,c.food1,c.food2,c.food3,cf.id as foodId, 1 as ind3x \n" .
+    " from catering c join (select c.ID from catering_foods c where (c.ID in (".$catering_food1.",".$catering_food2.",".$catering_food3.") or -1 in (".$catering_food1.",".$catering_food2.",".$catering_food3.")) and is_valid=1) as cf on c.food3 = cf.id) as c1 \n" .
+    " group by c1.ID,c1.name,c1.food1,c1.food2,c1.food3 \n" .
+    " ) as c2 on c.ID = c2.ID JOIN \n" .
+    " catering_area ca on c.ID= ca.id_catering \n" .
+    " where (ca.id_area=". $catering_city . " or -1=". $catering_city . ") and c.is_valid=1  \n" .
+    " order by c2.ind3x desc, c.name ASC; \n" .
+    "  \n";
 
 
     
-    //echo "<br>".$sql."<br>";
+    //echo "<br>".str_replace("\n","<br>",$sql)."<br>";
     //die();
 
  
